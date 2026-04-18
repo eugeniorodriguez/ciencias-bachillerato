@@ -36,6 +36,62 @@ export async function renderContinuidad(root) {
     </section>
 
     <section class="panel">
+      <h2>💡 Trucos y recomendaciones</h2>
+
+      <div class="theory">
+        <h4>🎯 ¿Cuándo aplico el límite y cuándo no? (el tema del ≤ vs &lt;)</h4>
+        <p><strong>Siempre</strong> calculamos los límites laterales en los puntos de cambio de trozo. Lo que cambia con el símbolo es <em>dónde evalúas $f(a)$</em>, no si se calcula el límite.</p>
+        <ul class="clean">
+          <li>🧮 <strong>El límite se calcula siempre</strong> en los puntos de cambio (por la izquierda y por la derecha).</li>
+          <li>🎯 <strong>$f(a)$ se evalúa con el trozo que incluya $a$</strong> (el que tenga $\\le$ o $\\ge$ tocando ese punto).</li>
+          <li>⚖️ Si un trozo dice $0\\le x\\le 2$ y el siguiente $x&gt;2$, entonces $f(2)$ lo da el <em>segundo</em> trozo (tiene el $\\le 2$), aunque el límite por la derecha lo calcules con el tercero.</li>
+        </ul>
+      </div>
+
+      <div class="theory">
+        <h4>✅ Las 3 condiciones de continuidad en $x=a$</h4>
+        <ol>
+          <li><strong>Existe $f(a)$</strong> → $a$ está en el dominio.</li>
+          <li><strong>Existe $\\lim_{x\\to a} f(x)$</strong> → los dos laterales coinciden.</li>
+          <li><strong>Son iguales</strong>: $\\displaystyle\\lim_{x\\to a} f(x) = f(a)$.</li>
+        </ol>
+        <p class="hint">Si falla cualquiera de las tres, hay discontinuidad. El tipo depende de <em>cuál</em> falla.</p>
+      </div>
+
+      <div class="theory">
+        <h4>🏷️ Cómo clasificar la discontinuidad</h4>
+        <table class="table">
+          <thead><tr><th>¿Qué pasa?</th><th>Tipo</th></tr></thead>
+          <tbody>
+            <tr><td>Los laterales coinciden y son finitos pero $\\ne f(a)$ (o $f(a)$ no existe)</td><td>🟢 <strong>Evitable</strong></td></tr>
+            <tr><td>Los laterales son <em>distintos</em>, ambos finitos</td><td>🟡 <strong>Salto finito</strong> (mide el salto: $\\lim^+ - \\lim^-$)</td></tr>
+            <tr><td>Alguno de los laterales es $\\pm\\infty$</td><td>🔴 <strong>Salto infinito / esencial</strong> (suele ser asíntota vertical)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="theory">
+        <h4>🔁 Rutina para funciones a trozos</h4>
+        <ol>
+          <li>Identifica los <strong>puntos de cambio</strong> de trozo.</li>
+          <li>Además, dentro de cada trozo, mira si la fórmula tiene <strong>denominador que se anule</strong> o <strong>raíces de índice par con argumento negativo</strong>. Esos son puntos críticos extra.</li>
+          <li>Para cada punto crítico, aplica las 3 condiciones.</li>
+          <li>Concluye indicando el tipo de discontinuidad (o "continua").</li>
+        </ol>
+      </div>
+
+      <div class="theory">
+        <h4>⚠️ Errores típicos</h4>
+        <ul class="clean">
+          <li>❌ Olvidar comprobar el punto de cambio con <em>los dos</em> laterales.</li>
+          <li>❌ Simplificar $\\tfrac{x-2}{x^2-4}$ y creer que deja de tener problema en $x=2$. <strong>Sí tiene</strong>: aunque el límite sea finito, el dominio original sigue excluyendo $x=2$.</li>
+          <li>❌ Confundir un "agujero" con una AV. <strong>Agujero</strong> es límite finito con $f(a)$ no definido; <strong>AV</strong> es límite infinito.</li>
+          <li>✅ Dibuja mentalmente la gráfica: puntos cerrados/abiertos en los empalmes te dicen todo.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="panel">
       <h2>🧩 Analizador de funciones a trozos</h2>
       <p class="hint">Edita los trozos. Se analiza automáticamente la continuidad en los puntos de empalme y se detectan huecos.</p>
       <div id="pieces"></div>

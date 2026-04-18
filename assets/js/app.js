@@ -6,6 +6,7 @@ import { renderAsintotas } from './modules/asintotas.js';
 import { renderFicha } from './modules/ficha.js';
 import { renderPractica } from './modules/practica.js';
 import { renderLaboratorio } from './modules/laboratorio.js';
+import { renderChuleta } from './modules/chuleta.js';
 import { typeset } from './utils/mathRender.js';
 
 const routes = {
@@ -13,6 +14,7 @@ const routes = {
   limites: renderLimites,
   continuidad: renderContinuidad,
   asintotas: renderAsintotas,
+  chuleta: renderChuleta,
   ficha: renderFicha,
   practica: renderPractica,
   laboratorio: renderLaboratorio,

@@ -16,6 +16,10 @@ export async function renderInicio(root) {
           <h3>📈 Asíntotas</h3>
           <p>Detecta asíntotas verticales, horizontales y oblicuas.</p>
         </a>
+        <a class="card" href="#/chuleta">
+          <h3>📋 Chuleta</h3>
+          <p>Resumen rápido con todos los truquillos y esquemas.</p>
+        </a>
         <a class="card" href="#/ficha">
           <h3>📝 Ficha PDF</h3>
           <p>Los 6 límites + continuidad + asíntotas del PDF, resueltos con pasos.</p>

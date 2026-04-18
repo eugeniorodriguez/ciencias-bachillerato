@@ -18,6 +18,64 @@ export async function renderAsintotas(root) {
     </section>
 
     <section class="panel">
+      <h2>💡 Trucos y recomendaciones</h2>
+
+      <div class="theory">
+        <h4>🕳️ "Anular" el denominador: ¿AV o agujero?</h4>
+        <p>Cuando encuentras un valor $x=a$ que hace <strong>denominador = 0</strong>, comprueba <em>qué hace el numerador ahí</em>:</p>
+        <ul class="clean">
+          <li>🔺 <strong>Numerador $\\ne 0$</strong> → te queda $\\tfrac{k}{0}$ (con $k\\ne 0$) → la función se dispara → <strong>asíntota vertical</strong> en $x=a$.</li>
+          <li>🕳️ <strong>Numerador $= 0$</strong> → te queda $\\tfrac{0}{0}$ → hay factor común → al simplificar desaparece el problema → <strong>no hay AV, hay un agujero</strong> en $(a, \\text{límite simplificado})$.</li>
+        </ul>
+        <p class="hint"><strong>Ejemplo:</strong> en $\\dfrac{(x+2)(x-1)}{(x+3)(x-1)}$, el $x=1$ anula numerador y denominador → se simplifica → agujero en $(1, 3/4)$. El $x=-3$ sólo anula el denominador → asíntota vertical.</p>
+      </div>
+
+      <div class="theory">
+        <h4>🎯 Truco de los grados (asíntota horizontal)</h4>
+        <p>Para una función racional $\\dfrac{P(x)}{Q(x)}$ y $x\\to\\pm\\infty$:</p>
+        <ul class="clean">
+          <li>📉 <strong>$\\deg P &lt; \\deg Q$</strong> → AH en <strong>$y=0$</strong>.</li>
+          <li>⚖️ <strong>$\\deg P = \\deg Q$</strong> → AH en <strong>$y = \\dfrac{\\text{coef. líder } P}{\\text{coef. líder } Q}$</strong>.</li>
+          <li>📈 <strong>$\\deg P &gt; \\deg Q$</strong> → <strong>no hay AH</strong>. Si además $\\deg P = \\deg Q + 1$, hay <strong>oblicua</strong>.</li>
+        </ul>
+      </div>
+
+      <div class="theory">
+        <h4>📐 Asíntota oblicua — atajo y fórmulas</h4>
+        <p><strong>Método atajo (cuando la división sale limpia):</strong> separa la fracción en <em>recta + resto que tiende a 0</em>.</p>
+        <p>Ejemplo: $g(x) = \\dfrac{4x^2-2}{x} = 4x - \\dfrac{2}{x}$. El término $-\\tfrac{2}{x}\\to 0$ cuando $x\\to\\pm\\infty$, así que la recta $y=4x$ es la oblicua.</p>
+        <p><strong>Método con fórmulas (siempre funciona):</strong></p>
+        <ul class="clean">
+          <li>$m = \\displaystyle\\lim_{x\\to\\pm\\infty} \\dfrac{f(x)}{x}$ (pendiente).</li>
+          <li>$n = \\displaystyle\\lim_{x\\to\\pm\\infty} \\big[f(x) - mx\\big]$ (ordenada en el origen).</li>
+          <li>Si ambos son finitos y $m\\ne 0$ → asíntota oblicua $y = mx + n$.</li>
+        </ul>
+        <p class="hint">Si $m=0$, el resultado es una asíntota <em>horizontal</em> (no oblicua). Si $m$ no es finito, no hay ni oblicua ni horizontal.</p>
+      </div>
+
+      <div class="theory">
+        <h4>🔁 Rutina completa para una racional $P/Q$</h4>
+        <ol>
+          <li><strong>Dominio:</strong> factoriza $P$ y $Q$. Excluye del dominio las raíces de $Q$.</li>
+          <li><strong>Simplifica</strong> si hay factores comunes. Los que cancelas son <strong>agujeros</strong> (no AV).</li>
+          <li><strong>AV:</strong> raíces de $Q$ que <em>no</em> cancelaron. Comprueba con laterales.</li>
+          <li><strong>AH:</strong> truco de grados. Calcula sólo si $\\deg P \\le \\deg Q$.</li>
+          <li><strong>AO:</strong> solo si $\\deg P = \\deg Q + 1$. Usa el atajo o las fórmulas.</li>
+        </ol>
+      </div>
+
+      <div class="theory">
+        <h4>⚠️ Errores típicos</h4>
+        <ul class="clean">
+          <li>❌ Declarar AV en toda raíz del denominador sin mirar el numerador. El $0/0$ no es AV, es agujero.</li>
+          <li>❌ Dar horizontal y oblicua a la vez en la misma dirección. <strong>Son excluyentes</strong>.</li>
+          <li>❌ Olvidar que una función puede tener <em>AH distinta en $+\\infty$ y en $-\\infty$</em> (típico con raíces: $\\sqrt{x^2+1}$).</li>
+          <li>✅ Escribir el dominio <em>antes</em> de simplificar. Así no olvidas el agujero.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="panel">
       <h2>🧮 Analizador de asíntotas</h2>
       <div class="row">
         <div>

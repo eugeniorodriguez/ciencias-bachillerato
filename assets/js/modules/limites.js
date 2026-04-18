@@ -41,6 +41,56 @@ export async function renderLimites(root) {
     </section>
 
     <section class="panel">
+      <h2>💡 Trucos y recomendaciones</h2>
+
+      <div class="theory">
+        <h4>🎯 Truco de los grados (la regla de oro para $\\infty/\\infty$)</h4>
+        <p>Cuando tienes una función racional $\\dfrac{P(x)}{Q(x)}$ y $x\\to\\pm\\infty$:</p>
+        <ul class="clean">
+          <li>📉 <strong>grado num &lt; grado den</strong> → el límite es <strong>$0$</strong>.</li>
+          <li>⚖️ <strong>grado num = grado den</strong> → el límite es <strong>el cociente de coeficientes líderes</strong>.</li>
+          <li>📈 <strong>grado num &gt; grado den</strong> → el límite es <strong>$\\pm\\infty$</strong> (el signo lo decide el signo de los coeficientes líderes y la paridad del grado).</li>
+        </ul>
+        <p class="hint">Este truco te ahorra escribir la división entre $x^n$. Es <em>el mismo</em> truco que se usa para detectar asíntotas horizontales.</p>
+      </div>
+
+      <div class="theory">
+        <h4>🧩 Cómo atacar cada indeterminación</h4>
+        <ol>
+          <li><strong>$\\tfrac{0}{0}$ racional</strong> → factoriza num. y den., busca <em>el factor común</em> y cancélalo. Después sustituye.</li>
+          <li><strong>$\\tfrac{0}{0}$ con raíces</strong> → multiplica y divide por el <em>conjugado</em> de la parte con raíz.</li>
+          <li><strong>$\\tfrac{\\infty}{\\infty}$</strong> → usa el truco de los grados (arriba). Si no es racional, divide por la potencia mayor de $x$.</li>
+          <li><strong>$\\infty - \\infty$ con raíces</strong> → conjugado, casi siempre. Convierte la resta en un cociente.</li>
+          <li><strong>$\\infty - \\infty$ sin raíces</strong> → saca factor común (normalmente la mayor potencia de $x$).</li>
+          <li><strong>$\\tfrac{k}{0}$ con $k\\ne 0$</strong> → <strong>no</strong> es indeterminación, es una <strong>asíntota vertical</strong>. Estudia los laterales para decidir signo.</li>
+          <li><strong>$\\tfrac{k}{0^2}$</strong> (denominador al cuadrado) → el signo lo manda <strong>$k$</strong>, porque $(algo)^2 \\ge 0$ siempre.</li>
+        </ol>
+      </div>
+
+      <div class="theory">
+        <h4>⚠️ Errores típicos que hay que evitar</h4>
+        <ul class="clean">
+          <li>❌ Asumir que $\\tfrac{0}{0}$ vale 0. <strong>Es indeterminación</strong>: hay que operar.</li>
+          <li>❌ Pensar que $\\tfrac{k}{0}$ es indeterminación. <strong>No lo es</strong>: el resultado es $\\pm\\infty$, basta mirar el signo.</li>
+          <li>❌ Cancelar factores sin notar que cambia el dominio (deja un "agujero" en ese punto, no desaparece).</li>
+          <li>❌ En $\\sqrt{x^2}$ escribir $x$ sin más. Cuando $x\\to-\\infty$, $\\sqrt{x^2}=|x|=-x$.</li>
+          <li>✅ Antes de todo, <strong>sustituye $a$ en $f(x)$</strong>. Muchas veces no hay indeterminación.</li>
+        </ul>
+      </div>
+
+      <div class="theory">
+        <h4>🔁 Checklist rápida (paso a paso)</h4>
+        <ol>
+          <li>Sustituyo $a$ en $f(x)$.</li>
+          <li>¿Sale un número? Ya está.</li>
+          <li>¿Sale $\\tfrac{k}{0}$? Es $\\pm\\infty$ → estudio laterales para el signo.</li>
+          <li>¿Sale indeterminación? Identifico el tipo y aplico la técnica (tabla de arriba).</li>
+          <li>Si hay punto finito, compruebo que <em>los límites laterales coinciden</em>.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="panel">
       <h2>🧮 Calculadora de límites</h2>
       <p class="hint">Escribe una función $f(x)$ y un punto $a$ (o <code class="kbd">inf</code> / <code class="kbd">-inf</code>).</p>
       <div class="row">

@@ -4,3 +4,6 @@ node_modules/
 .idea/
 .claude/
 *.log
+
+# Sobrescribe posibles ignores globales.
+!index.html

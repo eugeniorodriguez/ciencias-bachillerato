@@ -39,7 +39,7 @@ export function renderAsignaturaPlaceholder({ nombre, mark, descripcion, bloques
 
     <section class="panel">
       <h2>¿Quieres colaborar?</h2>
-      <p>El proyecto es abierto. Puedes proponer temas, enviarnos ejercicios tipo o pedir funcionalidades para ${nombre} directamente en el <a href="https://github.com/eugeniorodriguez/limites_continuidad_asintotas/issues" target="_blank" rel="noopener">repositorio de GitHub</a>.</p>
+      <p>El proyecto es abierto. Puedes proponer temas, enviarnos ejercicios tipo o pedir funcionalidades para ${nombre} directamente en el <a href="https://github.com/eugeniorodriguez/ciencias-bachillerato/issues" target="_blank" rel="noopener">repositorio de GitHub</a>.</p>
     </section>
   `;
 }

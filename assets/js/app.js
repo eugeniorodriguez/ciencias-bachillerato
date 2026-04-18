@@ -13,6 +13,8 @@ import { renderFicha } from './modules/ficha.js';
 import { renderPractica } from './modules/practica.js';
 import { renderLaboratorio } from './modules/laboratorio.js';
 import { renderChuleta } from './modules/chuleta.js';
+import { renderUd7Funciones } from './modules/ud7-funciones.js';
+import { renderUd11Derivadas } from './modules/ud11-derivadas.js';
 import { typeset } from './utils/mathRender.js';
 
 // Mapa de rutas (clave plana, basada en hash).
@@ -33,6 +35,8 @@ const routes = {
   'ficha': renderFicha,
   'practica': renderPractica,
   'laboratorio': renderLaboratorio,
+  'ud7': renderUd7Funciones,
+  'ud11': renderUd11Derivadas,
 };
 
 // Breadcrumbs y flag "es sección interna de UD10".
@@ -48,6 +52,8 @@ const BREADCRUMBS = {
   'fisica':       [{ href: '#/', label: 'Inicio' }, { label: 'Física' }],
   'quimica':      [{ href: '#/', label: 'Inicio' }, { label: 'Química' }],
   'tecnologia':   [{ href: '#/', label: 'Inicio' }, { label: 'Tecnología' }],
+  'ud7':          [{ href: '#/', label: 'Inicio' }, { href: '#/matematicas', label: 'Matemáticas' }, { href: '#/mates-1bach', label: '1.º Bachillerato' }, { label: 'UD 7 · Funciones elementales' }],
+  'ud11':         [{ href: '#/', label: 'Inicio' }, { href: '#/matematicas', label: 'Matemáticas' }, { href: '#/mates-1bach', label: '1.º Bachillerato' }, { label: 'UD 11 · Derivadas' }],
 };
 
 const UD10_SUBNAV = [
@@ -107,6 +113,8 @@ function updateBrand(route) {
   const sub = document.getElementById('brand-sub');
   if (!sub) return;
   if (UD10_SECTIONS.has(route)) sub.textContent = 'Matemáticas · 1.º Bachillerato · UD 10';
+  else if (route === 'ud7') sub.textContent = 'Matemáticas · 1.º Bachillerato · UD 7';
+  else if (route === 'ud11') sub.textContent = 'Matemáticas · 1.º Bachillerato · UD 11';
   else if (route === 'matematicas' || route === 'mates-1bach') sub.textContent = 'Matemáticas';
   else if (route === 'fisica') sub.textContent = 'Física';
   else if (route === 'quimica') sub.textContent = 'Química';

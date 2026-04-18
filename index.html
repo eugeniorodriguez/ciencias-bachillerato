@@ -1,14 +1,20 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Límites, Continuidad y Asíntotas · UD 10</title>
+  <title>UD 10 · Límites, Continuidad y Asíntotas</title>
   <meta name="description" content="Herramienta de estudio interactiva para límites, continuidad y asíntotas (1º Bachillerato / UD 10)." />
-  <link rel="stylesheet" href="assets/css/main.css" />
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%88%AB%3C/text%3E%3C/svg%3E" />
 
-  <!-- MathJax para renderizar LaTeX -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="assets/css/main.css" />
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90' font-family='serif' font-style='italic' fill='%231f3a8a'%3EM%3C/text%3E%3C/svg%3E" />
+
+  <!-- MathJax -->
   <script>
     window.MathJax = {
       tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] },
@@ -17,42 +23,48 @@
     };
   </script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" defer></script>
-
-  <!-- math.js para evaluar expresiones -->
   <script src="https://cdn.jsdelivr.net/npm/mathjs@12.4.2/lib/browser/math.min.js" defer></script>
-
-  <!-- function-plot para gráficas -->
   <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js" defer></script>
   <script src="https://unpkg.com/function-plot@1.25.1/dist/function-plot.js" defer></script>
 </head>
 <body>
-  <header class="topbar">
-    <div class="brand">
-      <span class="logo">∫</span>
-      <div>
-        <h1>UD 10 · Límites, Continuidad y Asíntotas</h1>
-        <p class="subtitle">Herramienta interactiva de estudio · <a href="https://github.com" target="_blank" rel="noopener">GitHub Pages</a></p>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a href="#/inicio" class="brand">
+          <span class="brand-mark">M</span>
+          <div>
+            <div class="brand-title">UD 10 · Límites, Continuidad y Asíntotas</div>
+            <div class="brand-sub">Matemáticas · 1.º Bachillerato</div>
+          </div>
+        </a>
+
+        <nav class="tabs-top" id="nav" aria-label="Secciones">
+          <a href="#/inicio" data-route="inicio">Inicio</a>
+          <a href="#/limites" data-route="limites">Límites</a>
+          <a href="#/continuidad" data-route="continuidad">Continuidad</a>
+          <a href="#/asintotas" data-route="asintotas">Asíntotas</a>
+          <a href="#/chuleta" data-route="chuleta">Chuleta</a>
+          <a href="#/ficha" data-route="ficha">Ficha</a>
+          <a href="#/practica" data-route="practica">Práctica</a>
+          <a href="#/laboratorio" data-route="laboratorio">Lab</a>
+        </nav>
+
+        <button class="theme-toggle" id="theme-toggle" aria-label="Cambiar tema">
+          <span id="theme-icon">☾</span>
+          <span id="theme-label">Oscuro</span>
+        </button>
       </div>
-    </div>
-    <nav class="tabs" id="nav">
-      <a href="#/inicio" data-route="inicio">Inicio</a>
-      <a href="#/limites" data-route="limites">Límites</a>
-      <a href="#/continuidad" data-route="continuidad">Continuidad</a>
-      <a href="#/asintotas" data-route="asintotas">Asíntotas</a>
-      <a href="#/chuleta" data-route="chuleta">📋 Chuleta</a>
-      <a href="#/ficha" data-route="ficha">Ficha PDF</a>
-      <a href="#/practica" data-route="practica">Práctica</a>
-      <a href="#/laboratorio" data-route="laboratorio">Laboratorio</a>
-    </nav>
-  </header>
+    </header>
 
-  <main id="app"></main>
+    <main id="app" class="page"></main>
 
-  <footer class="footer">
-    <p>
-      Hecho para estudiar · Añade ejercicios en <code>assets/js/data/</code> · Se despliega con GitHub Actions + Pages.
-    </p>
-  </footer>
+    <footer class="footer">
+      Hecho para estudiar · código en
+      <a href="https://github.com/eugeniorodriguez/limites_continuidad_asintotas" target="_blank" rel="noopener">GitHub</a>
+      · desplegado con GitHub Actions + Pages.
+    </footer>
+  </div>
 
   <script type="module" src="assets/js/app.js"></script>
 </body>

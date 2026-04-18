@@ -1,20 +1,23 @@
 import { FICHA } from '../data/ficha.js';
 import { typeset, waitMath } from '../utils/mathRender.js';
 import { plot } from '../utils/plotter.js';
+import { load } from '../utils/storage.js';
 
 export async function renderFicha(root) {
   await waitMath();
-  const secciones = [...new Set(FICHA.map(e => e.seccion))];
+  const custom = load('ficha-custom', []);
+  const ALL = [...FICHA, ...custom.map(e => ({ ...e, _custom: true }))];
+  const secciones = [...new Set(ALL.map(e => e.seccion))];
   root.innerHTML = `
     <section class="panel">
-      <h2>📝 Ficha Repaso UD 10 (PDF)</h2>
-      <p>Los ejercicios del PDF con <strong>pasos desplegables</strong>, solución y gráfica. Haz clic en <em>"Ver pasos"</em> para ir descubriendo cada paso.</p>
-      <p class="hint">Consejo: intenta resolverlo tú primero, después compara. Recuerda que el profesor pide los pasos escritos, no sólo la solución.</p>
+      <h2>📝 Ficha Repaso UD 10</h2>
+      <p>Ejercicios con <strong>pasos desplegables</strong>, solución y gráfica. Haz clic en <em>"Ver pasos"</em> para ir descubriendo cada paso.</p>
+      <p class="hint">Consejo: intenta resolverlo tú primero, después compara. Los marcados con 🟣 los has añadido tú desde <a href="#/practica">Práctica → Añadir ejercicio completo</a>.</p>
     </section>
     ${secciones.map(s => `
       <section class="panel">
         <h2>${s}</h2>
-        ${FICHA.filter(e => e.seccion === s).map(ejercicioHTML).join('')}
+        ${ALL.filter(e => e.seccion === s).map(ejercicioHTML).join('')}
       </section>
     `).join('')}
   `;
@@ -42,7 +45,7 @@ function ejercicioHTML(e) {
   return `
     <div class="exercise" data-expr="${e.expr || ''}">
       <header>
-        <div><span class="chip">${e.id}</span><strong>${e.enunciado}</strong></div>
+        <div>${e._custom ? '<span class="chip" style="color:#c084fc;border-color:rgba(192,132,252,0.4)">🟣 tuyo</span>' : ''}<span class="chip">${e.id}</span><strong>${e.enunciado}</strong></div>
         <button class="btn ghost sm toggle-steps">Ver pasos</button>
       </header>
       <div class="steps">

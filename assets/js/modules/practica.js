@@ -96,8 +96,8 @@ export async function renderPractica(root) {
     </section>
 
     <section class="panel">
-      <h2>➕ Añadir tu propio ejercicio</h2>
-      <p class="hint">Se guardan en tu navegador. Útiles para repasar los que te pone tu profesor.</p>
+      <h2>➕ Añadir ejercicio rápido</h2>
+      <p class="hint">Para un límite sencillo con respuesta. Se guardan en tu navegador.</p>
       <div class="row">
         <input id="mine-title" type="text" placeholder="Título (ej: 'Examen junio')" style="min-width:200px" />
         <input id="mine-expr" type="text" placeholder="f(x) = (x^2-1)/(x-1)" style="min-width:240px" />
@@ -106,6 +106,53 @@ export async function renderPractica(root) {
         <button class="btn" id="mine-add">Guardar</button>
       </div>
       <div id="mine-list"></div>
+    </section>
+
+    <section class="panel">
+      <h2>📝 Añadir ejercicio completo (con pasos)</h2>
+      <p class="hint">Igual que los del PDF: enunciado, pasos de resolución, solución… y se mostrarán en la sección <a href="#/ficha">Ficha PDF</a> junto a los oficiales.</p>
+      <div class="row" style="flex-direction:column; align-items:stretch; gap:10px">
+        <div class="row">
+          <input id="full-id" type="text" placeholder="ID corto (ej: examen-mayo-1)" style="min-width:200px" />
+          <select id="full-seccion">
+            <option>Ejercicio · Límites</option>
+            <option>Ejercicio · Continuidad</option>
+            <option>Ejercicio · Asíntotas</option>
+            <option>Mis ejercicios</option>
+          </select>
+        </div>
+        <div>
+          <label>Enunciado (puedes usar LaTeX con $…$):</label>
+          <textarea id="full-enunciado" rows="2" placeholder="$\\displaystyle \\lim_{x\\to 2} \\dfrac{x^2-4}{x-2}$" style="width:100%"></textarea>
+        </div>
+        <div class="row">
+          <div style="flex:1; min-width:220px">
+            <label>Expresión f(x) (math.js, opcional para gráfica):</label>
+            <input id="full-expr" type="text" placeholder="(x^2-4)/(x-2)" style="width:100%" />
+          </div>
+          <div>
+            <label>Punto TeX (ej: 2, +\\infty, -\\infty):</label>
+            <input id="full-punto" type="text" placeholder="2" style="width:120px" />
+          </div>
+        </div>
+        <div>
+          <label>Pasos de resolución (uno por línea, admite LaTeX):</label>
+          <textarea id="full-pasos" rows="5" placeholder="Factorizamos: x²-4 = (x-2)(x+2).
+Simplificamos: $\\dfrac{(x-2)(x+2)}{x-2} = x+2$.
+Sustituimos x=2: resultado 4." style="width:100%; font-family: monospace"></textarea>
+        </div>
+        <div>
+          <label>Solución final:</label>
+          <input id="full-sol" type="text" placeholder="$\\boxed{4}$" style="width:100%" />
+        </div>
+        <div class="row">
+          <button class="btn" id="full-save">💾 Guardar ejercicio</button>
+          <button class="btn ghost sm" id="full-export">⬇ Exportar JSON</button>
+          <button class="btn ghost sm" id="full-import">⬆ Importar JSON</button>
+          <button class="btn ghost sm" id="full-clear">🗑 Vaciar todos</button>
+        </div>
+      </div>
+      <div id="full-list" style="margin-top:16px"></div>
     </section>
   `;
 
@@ -188,6 +235,101 @@ export async function renderPractica(root) {
     refreshMine();
   });
   refreshMine();
+
+  // ==== Ejercicios completos (tipo ficha) ====
+  const refreshFull = async () => {
+    const list = load('ficha-custom', []);
+    const box = document.getElementById('full-list');
+    if (!list.length) { box.innerHTML = '<p class="hint">Aún no has creado ejercicios completos.</p>'; return; }
+    box.innerHTML = list.map((e, i) => `
+      <div class="exercise" data-i="${i}">
+        <header>
+          <div><span class="chip">${e.seccion || 'Mis ejercicios'}</span><span class="chip">${e.id || ('ej-' + i)}</span><strong>${e.enunciado}</strong></div>
+          <div>
+            <button class="btn ghost sm toggle-steps">Ver pasos</button>
+            <button class="btn ghost sm del-full">🗑</button>
+          </div>
+        </header>
+        <div class="steps">
+          <ol>
+            ${(e.pasos || []).map(p => `<li>${p}</li>`).join('')}
+          </ol>
+          ${e.solucion ? `<p><strong>Solución:</strong> ${e.solucion}</p>` : ''}
+          ${e.expr ? '<div class="plot"></div>' : ''}
+        </div>
+      </div>
+    `).join('');
+    await typeset(box);
+    box.querySelectorAll('[data-i]').forEach(row => {
+      const i = Number(row.dataset.i);
+      const e = list[i];
+      row.querySelector('.toggle-steps').addEventListener('click', () => {
+        row.classList.toggle('open');
+        row.querySelector('.toggle-steps').textContent = row.classList.contains('open') ? 'Ocultar pasos' : 'Ver pasos';
+      });
+      row.querySelector('.del-full').addEventListener('click', () => {
+        list.splice(i, 1); save('ficha-custom', list); refreshFull();
+      });
+      const plotEl = row.querySelector('.plot');
+      if (plotEl && e.expr) {
+        plot(plotEl, {
+          xAxis: { domain: [-10, 10] },
+          yAxis: { domain: [-10, 10] },
+          data: [{ fn: e.expr.replace(/\s+/g, ''), graphType: 'polyline', color: '#22d3ee', nSamples: 500 }],
+        });
+      }
+    });
+  };
+
+  document.getElementById('full-save').addEventListener('click', () => {
+    const id = document.getElementById('full-id').value.trim() || ('ej-' + Date.now());
+    const seccion = document.getElementById('full-seccion').value;
+    const enunciado = document.getElementById('full-enunciado').value.trim();
+    const expr = document.getElementById('full-expr').value.trim();
+    const puntoTex = document.getElementById('full-punto').value.trim();
+    const pasos = document.getElementById('full-pasos').value.split('\n').map(s => s.trim()).filter(Boolean);
+    const solucion = document.getElementById('full-sol').value.trim();
+    if (!enunciado || pasos.length === 0) { alert('Necesitas al menos enunciado y un paso.'); return; }
+    const list = load('ficha-custom', []);
+    list.push({ id, seccion, enunciado, expr, puntoTex, pasos, solucion });
+    save('ficha-custom', list);
+    ['full-id','full-enunciado','full-expr','full-punto','full-pasos','full-sol'].forEach(k => document.getElementById(k).value = '');
+    refreshFull();
+  });
+
+  document.getElementById('full-export').addEventListener('click', async () => {
+    const list = load('ficha-custom', []);
+    const json = JSON.stringify(list, null, 2);
+    try {
+      await navigator.clipboard.writeText(json);
+      alert('✅ JSON copiado al portapapeles (' + list.length + ' ejercicios).\nPuedes pegarlo en assets/js/data/ficha.js para hacerlos permanentes.');
+    } catch {
+      // fallback: mostrar en un prompt
+      prompt('Copia este JSON:', json);
+    }
+  });
+
+  document.getElementById('full-import').addEventListener('click', () => {
+    const raw = prompt('Pega el JSON (array de ejercicios):');
+    if (!raw) return;
+    try {
+      const arr = JSON.parse(raw);
+      if (!Array.isArray(arr)) throw new Error('Debe ser un array');
+      const current = load('ficha-custom', []);
+      save('ficha-custom', current.concat(arr));
+      alert('✅ Importados ' + arr.length + ' ejercicios.');
+      refreshFull();
+    } catch (e) {
+      alert('❌ JSON no válido: ' + e.message);
+    }
+  });
+
+  document.getElementById('full-clear').addEventListener('click', () => {
+    if (!confirm('¿Borrar TODOS tus ejercicios completos?')) return;
+    save('ficha-custom', []); refreshFull();
+  });
+
+  refreshFull();
 }
 
 function renderExerciseCard(ex) {

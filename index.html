@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>UD 10 · Límites, Continuidad y Asíntotas</title>
-  <meta name="description" content="Herramienta de estudio interactiva para límites, continuidad y asíntotas (1º Bachillerato / UD 10)." />
+  <title>Ciencias · Bachillerato</title>
+  <meta name="description" content="Herramienta de estudio para las asignaturas de ciencias de Bachillerato: Matemáticas, Física, Química y Tecnología." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,7 +12,7 @@
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap">
   <link rel="stylesheet" href="assets/css/main.css" />
 
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90' font-family='serif' font-style='italic' fill='%231f3a8a'%3EM%3C/text%3E%3C/svg%3E" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90' font-family='serif' font-style='italic' fill='%231f3a8a'%3EC%3C/text%3E%3C/svg%3E" />
 
   <!-- MathJax -->
   <script>
@@ -31,29 +31,25 @@
   <div class="app-shell">
     <header class="topbar">
       <div class="topbar-inner">
-        <a href="#/inicio" class="brand">
-          <span class="brand-mark">M</span>
+        <a href="#/" class="brand" id="brand">
+          <span class="brand-mark">C</span>
           <div>
-            <div class="brand-title">UD 10 · Límites, Continuidad y Asíntotas</div>
-            <div class="brand-sub">Matemáticas · 1.º Bachillerato</div>
+            <div class="brand-title">Ciencias · Bachillerato</div>
+            <div class="brand-sub" id="brand-sub">Matemáticas · Física · Química · Tecnología</div>
           </div>
         </a>
 
-        <nav class="tabs-top" id="nav" aria-label="Secciones">
-          <a href="#/inicio" data-route="inicio">Inicio</a>
-          <a href="#/limites" data-route="limites">Límites</a>
-          <a href="#/continuidad" data-route="continuidad">Continuidad</a>
-          <a href="#/asintotas" data-route="asintotas">Asíntotas</a>
-          <a href="#/chuleta" data-route="chuleta">Chuleta</a>
-          <a href="#/ficha" data-route="ficha">Ficha</a>
-          <a href="#/practica" data-route="practica">Práctica</a>
-          <a href="#/laboratorio" data-route="laboratorio">Lab</a>
-        </nav>
+        <nav class="breadcrumbs" id="breadcrumbs" aria-label="Ruta"></nav>
 
         <button class="theme-toggle" id="theme-toggle" aria-label="Cambiar tema">
           <span id="theme-icon">☾</span>
           <span id="theme-label">Oscuro</span>
         </button>
+      </div>
+
+      <!-- Subnav del tema (sólo dentro de UD10). El router la rellena. -->
+      <div class="subnav-wrap" id="subnav-wrap" hidden>
+        <nav class="subnav" id="subnav" aria-label="Secciones del tema"></nav>
       </div>
     </header>
 

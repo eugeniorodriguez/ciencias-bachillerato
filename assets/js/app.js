@@ -1,5 +1,11 @@
-// App principal: router muy simple basado en hash + carga de módulos.
-import { renderInicio } from './modules/inicio.js';
+// App principal: router con breadcrumbs y subnav contextual.
+import { renderHub } from './modules/hub.js';
+import { renderMatematicas } from './modules/matematicas.js';
+import { renderMates1Bach } from './modules/mates-1bach.js';
+import { renderFisica } from './modules/fisica.js';
+import { renderQuimica } from './modules/quimica.js';
+import { renderTecnologia } from './modules/tecnologia.js';
+import { renderUd10Home } from './modules/ud10-home.js';
 import { renderLimites } from './modules/limites.js';
 import { renderContinuidad } from './modules/continuidad.js';
 import { renderAsintotas } from './modules/asintotas.js';
@@ -9,28 +15,113 @@ import { renderLaboratorio } from './modules/laboratorio.js';
 import { renderChuleta } from './modules/chuleta.js';
 import { typeset } from './utils/mathRender.js';
 
+// Mapa de rutas (clave plana, basada en hash).
 const routes = {
-  inicio: renderInicio,
-  limites: renderLimites,
-  continuidad: renderContinuidad,
-  asintotas: renderAsintotas,
-  chuleta: renderChuleta,
-  ficha: renderFicha,
-  practica: renderPractica,
-  laboratorio: renderLaboratorio,
+  '': renderHub,
+  'hub': renderHub,
+  'matematicas': renderMatematicas,
+  'mates-1bach': renderMates1Bach,
+  'fisica': renderFisica,
+  'quimica': renderQuimica,
+  'tecnologia': renderTecnologia,
+  'ud10': renderUd10Home,
+  'inicio': renderUd10Home,      // alias heredado
+  'limites': renderLimites,
+  'continuidad': renderContinuidad,
+  'asintotas': renderAsintotas,
+  'chuleta': renderChuleta,
+  'ficha': renderFicha,
+  'practica': renderPractica,
+  'laboratorio': renderLaboratorio,
 };
 
-const app = document.getElementById('app');
-const navLinks = document.querySelectorAll('#nav a');
+// Breadcrumbs y flag "es sección interna de UD10".
+const UD10_SECTIONS = new Set([
+  'ud10', 'limites', 'continuidad', 'asintotas', 'chuleta', 'ficha', 'practica', 'laboratorio', 'inicio',
+]);
+
+const BREADCRUMBS = {
+  '':             [],
+  'hub':          [],
+  'matematicas':  [{ href: '#/', label: 'Inicio' }, { label: 'Matemáticas' }],
+  'mates-1bach':  [{ href: '#/', label: 'Inicio' }, { href: '#/matematicas', label: 'Matemáticas' }, { label: '1.º Bachillerato' }],
+  'fisica':       [{ href: '#/', label: 'Inicio' }, { label: 'Física' }],
+  'quimica':      [{ href: '#/', label: 'Inicio' }, { label: 'Química' }],
+  'tecnologia':   [{ href: '#/', label: 'Inicio' }, { label: 'Tecnología' }],
+};
+
+const UD10_SUBNAV = [
+  { key: 'ud10',        label: 'Inicio' },
+  { key: 'limites',     label: 'Límites' },
+  { key: 'continuidad', label: 'Continuidad' },
+  { key: 'asintotas',   label: 'Asíntotas' },
+  { key: 'chuleta',     label: 'Chuleta' },
+  { key: 'ficha',       label: 'Ficha' },
+  { key: 'practica',    label: 'Práctica' },
+  { key: 'laboratorio', label: 'Lab' },
+];
 
 function currentRoute() {
-  const h = (location.hash || '#/inicio').replace(/^#\//, '');
-  return routes[h] ? h : 'inicio';
+  const raw = (location.hash || '#/').replace(/^#\/?/, '').trim();
+  return routes[raw] ? raw : (raw === '' ? '' : 'hub');
 }
+
+function ud10Breadcrumbs(route) {
+  return [
+    { href: '#/', label: 'Inicio' },
+    { href: '#/matematicas', label: 'Matemáticas' },
+    { href: '#/mates-1bach', label: '1.º Bachillerato' },
+    route === 'ud10' || route === 'inicio'
+      ? { label: 'UD 10 · Límites, Continuidad y Asíntotas' }
+      : { href: '#/ud10', label: 'UD 10' },
+  ].concat(
+    route !== 'ud10' && route !== 'inicio'
+      ? [{ label: (UD10_SUBNAV.find(s => s.key === route) || { label: route }).label }]
+      : []
+  );
+}
+
+function renderBreadcrumbs(route) {
+  const box = document.getElementById('breadcrumbs');
+  const crumbs = UD10_SECTIONS.has(route) ? ud10Breadcrumbs(route) : (BREADCRUMBS[route] || []);
+  if (!crumbs.length) { box.innerHTML = ''; return; }
+  box.innerHTML = crumbs.map((c, i) => {
+    const last = i === crumbs.length - 1;
+    const inner = c.href && !last ? `<a href="${c.href}">${c.label}</a>` : `<span>${c.label}</span>`;
+    return inner + (last ? '' : '<span class="sep">›</span>');
+  }).join('');
+}
+
+function renderSubnav(route) {
+  const wrap = document.getElementById('subnav-wrap');
+  const nav = document.getElementById('subnav');
+  if (!UD10_SECTIONS.has(route)) { wrap.hidden = true; nav.innerHTML = ''; return; }
+  wrap.hidden = false;
+  const activeKey = route === 'inicio' ? 'ud10' : route;
+  nav.innerHTML = UD10_SUBNAV.map(s => `
+    <a href="#/${s.key}" class="${s.key === activeKey ? 'active' : ''}">${s.label}</a>
+  `).join('');
+}
+
+function updateBrand(route) {
+  const sub = document.getElementById('brand-sub');
+  if (!sub) return;
+  if (UD10_SECTIONS.has(route)) sub.textContent = 'Matemáticas · 1.º Bachillerato · UD 10';
+  else if (route === 'matematicas' || route === 'mates-1bach') sub.textContent = 'Matemáticas';
+  else if (route === 'fisica') sub.textContent = 'Física';
+  else if (route === 'quimica') sub.textContent = 'Química';
+  else if (route === 'tecnologia') sub.textContent = 'Tecnología';
+  else sub.textContent = 'Matemáticas · Física · Química · Tecnología';
+}
+
+const app = document.getElementById('app');
 
 async function render() {
   const route = currentRoute();
-  navLinks.forEach(a => a.classList.toggle('active', a.dataset.route === route));
+  renderBreadcrumbs(route);
+  renderSubnav(route);
+  updateBrand(route);
+
   app.innerHTML = '<div class="panel"><p>Cargando…</p></div>';
   try {
     await routes[route](app);
@@ -44,7 +135,7 @@ async function render() {
 
 window.addEventListener('hashchange', render);
 window.addEventListener('DOMContentLoaded', () => {
-  if (!location.hash) location.hash = '#/inicio';
+  if (!location.hash) location.hash = '#/';
   setupTheme();
   render();
 });

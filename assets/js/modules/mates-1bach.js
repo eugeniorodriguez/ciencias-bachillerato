@@ -1,19 +1,19 @@
 // Listado de UDs para 1.º Bachillerato. UD10 con contenido, resto placeholders.
 const UDs = [
-  { num: 1,  title: 'Números reales',                             desc: 'Conjuntos, intervalos, valor absoluto, radicales.' },
-  { num: 2,  title: 'Polinomios y fracciones algebraicas',        desc: 'Operaciones, factor común, Ruffini, identidades notables.' },
-  { num: 3,  title: 'Ecuaciones e inecuaciones',                  desc: 'Polinómicas, racionales, con radicales, sistemas.' },
-  { num: 4,  title: 'Trigonometría',                              desc: 'Razones trigonométricas, identidades, ecuaciones.' },
-  { num: 5,  title: 'Geometría analítica',                        desc: 'Vectores, rectas, distancias y ángulos en el plano.' },
-  { num: 6,  title: 'Números complejos',                          desc: 'Forma binómica, polar, operaciones, raíces.' },
+  { num: 1,  title: 'Números reales',                             desc: 'Conjuntos, intervalos, valor absoluto, radicales.', active: true, href: '#/ud1' },
+  { num: 2,  title: 'Polinomios y fracciones algebraicas',        desc: 'Operaciones, factor común, Ruffini, identidades notables.', active: true, href: '#/ud2' },
+  { num: 3,  title: 'Ecuaciones e inecuaciones',                  desc: 'Polinómicas, racionales, con radicales, sistemas.', active: true, href: '#/ud3' },
+  { num: 4,  title: 'Trigonometría',                              desc: 'Razones trigonométricas, identidades, ecuaciones.', active: true, href: '#/ud4' },
+  { num: 5,  title: 'Geometría analítica',                        desc: 'Vectores, rectas, distancias y ángulos en el plano.', active: true, href: '#/ud5' },
+  { num: 6,  title: 'Números complejos',                          desc: 'Forma binómica, polar, operaciones, raíces.', active: true, href: '#/ud6' },
   { num: 7,  title: 'Funciones elementales',                      desc: 'Dominio, recorrido, operaciones, funciones inversas.', active: true, href: '#/ud7' },
-  { num: 8,  title: 'Funciones polinómicas y racionales',         desc: 'Análisis gráfico, factorización, signo.' },
-  { num: 9,  title: 'Funciones exponenciales y logarítmicas',     desc: 'Propiedades, ecuaciones, modelos de crecimiento.' },
+  { num: 8,  title: 'Funciones polinómicas y racionales',         desc: 'Análisis gráfico, factorización, signo.', active: true, href: '#/ud8' },
+  { num: 9,  title: 'Funciones exponenciales y logarítmicas',     desc: 'Propiedades, ecuaciones, modelos de crecimiento.', active: true, href: '#/ud9' },
   { num: 10, title: 'Límites, continuidad y asíntotas',           desc: 'Idea de límite, indeterminaciones, continuidad, asíntotas.', active: true, href: '#/ud10' },
   { num: 11, title: 'Derivadas',                                  desc: 'Tasa de variación, reglas, aplicaciones al estudio de funciones.', active: true, href: '#/ud11' },
-  { num: 12, title: 'Estadística descriptiva',                    desc: 'Medidas de centralización y dispersión, regresión.' },
-  { num: 13, title: 'Probabilidad',                               desc: 'Sucesos, probabilidad condicionada, Bayes.' },
-  { num: 14, title: 'Distribuciones discretas y continuas',       desc: 'Binomial, normal, aproximaciones, intervalos.' },
+  { num: 12, title: 'Estadística descriptiva',                    desc: 'Medidas de centralización y dispersión, regresión.', active: true, href: '#/ud12' },
+  { num: 13, title: 'Probabilidad',                               desc: 'Sucesos, probabilidad condicionada, Bayes.', active: true, href: '#/ud13' },
+  { num: 14, title: 'Distribuciones discretas y continuas',       desc: 'Binomial, normal, aproximaciones, intervalos.', active: true, href: '#/ud14' },
 ];
 
 export async function renderMates1Bach(root) {

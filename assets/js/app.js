@@ -15,6 +15,17 @@ import { renderLaboratorio } from './modules/laboratorio.js';
 import { renderChuleta } from './modules/chuleta.js';
 import { renderUd7Funciones } from './modules/ud7-funciones.js';
 import { renderUd11Derivadas } from './modules/ud11-derivadas.js';
+import { renderUd1NumerosReales } from './modules/ud1-numeros-reales.js';
+import { renderUd2Polinomios } from './modules/ud2-polinomios.js';
+import { renderUd3Ecuaciones } from './modules/ud3-ecuaciones.js';
+import { renderUd4Trigonometria } from './modules/ud4-trigonometria.js';
+import { renderUd5Geometria } from './modules/ud5-geometria-analitica.js';
+import { renderUd6Complejos } from './modules/ud6-complejos.js';
+import { renderUd8PolRacionales } from './modules/ud8-polinomicas-racionales.js';
+import { renderUd9ExpLog } from './modules/ud9-exp-log.js';
+import { renderUd12Estadistica } from './modules/ud12-estadistica.js';
+import { renderUd13Probabilidad } from './modules/ud13-probabilidad.js';
+import { renderUd14Distribuciones } from './modules/ud14-distribuciones.js';
 import { typeset } from './utils/mathRender.js';
 
 // Mapa de rutas (clave plana, basada en hash).
@@ -35,8 +46,19 @@ const routes = {
   'ficha': renderFicha,
   'practica': renderPractica,
   'laboratorio': renderLaboratorio,
+  'ud1': renderUd1NumerosReales,
+  'ud2': renderUd2Polinomios,
+  'ud3': renderUd3Ecuaciones,
+  'ud4': renderUd4Trigonometria,
+  'ud5': renderUd5Geometria,
+  'ud6': renderUd6Complejos,
   'ud7': renderUd7Funciones,
+  'ud8': renderUd8PolRacionales,
+  'ud9': renderUd9ExpLog,
   'ud11': renderUd11Derivadas,
+  'ud12': renderUd12Estadistica,
+  'ud13': renderUd13Probabilidad,
+  'ud14': renderUd14Distribuciones,
 };
 
 // Breadcrumbs y flag "es sección interna de UD10".
@@ -52,9 +74,29 @@ const BREADCRUMBS = {
   'fisica':       [{ href: '#/', label: 'Inicio' }, { label: 'Física' }],
   'quimica':      [{ href: '#/', label: 'Inicio' }, { label: 'Química' }],
   'tecnologia':   [{ href: '#/', label: 'Inicio' }, { label: 'Tecnología' }],
-  'ud7':          [{ href: '#/', label: 'Inicio' }, { href: '#/matematicas', label: 'Matemáticas' }, { href: '#/mates-1bach', label: '1.º Bachillerato' }, { label: 'UD 7 · Funciones elementales' }],
-  'ud11':         [{ href: '#/', label: 'Inicio' }, { href: '#/matematicas', label: 'Matemáticas' }, { href: '#/mates-1bach', label: '1.º Bachillerato' }, { label: 'UD 11 · Derivadas' }],
+  'ud1':          udCrumbs('UD 1 · Números reales'),
+  'ud2':          udCrumbs('UD 2 · Polinomios y fracciones algebraicas'),
+  'ud3':          udCrumbs('UD 3 · Ecuaciones e inecuaciones'),
+  'ud4':          udCrumbs('UD 4 · Trigonometría'),
+  'ud5':          udCrumbs('UD 5 · Geometría analítica'),
+  'ud6':          udCrumbs('UD 6 · Números complejos'),
+  'ud7':          udCrumbs('UD 7 · Funciones elementales'),
+  'ud8':          udCrumbs('UD 8 · Funciones polinómicas y racionales'),
+  'ud9':          udCrumbs('UD 9 · Funciones exponenciales y logarítmicas'),
+  'ud11':         udCrumbs('UD 11 · Derivadas'),
+  'ud12':         udCrumbs('UD 12 · Estadística descriptiva'),
+  'ud13':         udCrumbs('UD 13 · Probabilidad'),
+  'ud14':         udCrumbs('UD 14 · Distribuciones'),
 };
+
+function udCrumbs(label) {
+  return [
+    { href: '#/', label: 'Inicio' },
+    { href: '#/matematicas', label: 'Matemáticas' },
+    { href: '#/mates-1bach', label: '1.º Bachillerato' },
+    { label },
+  ];
+}
 
 const UD10_SUBNAV = [
   { key: 'ud10',        label: 'Inicio' },
@@ -112,9 +154,9 @@ function renderSubnav(route) {
 function updateBrand(route) {
   const sub = document.getElementById('brand-sub');
   if (!sub) return;
+  const udMatch = route.match(/^ud(\d+)$/);
   if (UD10_SECTIONS.has(route)) sub.textContent = 'Matemáticas · 1.º Bachillerato · UD 10';
-  else if (route === 'ud7') sub.textContent = 'Matemáticas · 1.º Bachillerato · UD 7';
-  else if (route === 'ud11') sub.textContent = 'Matemáticas · 1.º Bachillerato · UD 11';
+  else if (udMatch) sub.textContent = `Matemáticas · 1.º Bachillerato · UD ${udMatch[1]}`;
   else if (route === 'matematicas' || route === 'mates-1bach') sub.textContent = 'Matemáticas';
   else if (route === 'fisica') sub.textContent = 'Física';
   else if (route === 'quimica') sub.textContent = 'Química';

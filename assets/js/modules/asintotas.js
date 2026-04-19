@@ -1,5 +1,6 @@
 import { typeset, waitMath, numericLimit, evalAt, fmt } from '../utils/mathRender.js';
 import { plot } from '../utils/plotter.js';
+import { animateAsintotas } from '../utils/graph-animator.js';
 
 export async function renderAsintotas(root) {
   await waitMath();
@@ -100,12 +101,22 @@ export async function renderAsintotas(root) {
 
       <h3>Gráfica</h3>
       <div id="as-plot" class="plot"></div>
+
+      <div class="row" style="margin-top:12px; align-items:center">
+        <button class="btn" id="as-animate">🎬 Animar gráfica</button>
+        <span class="hint">Reproduce una animación (4 s a 30 fps) de la curva y sus asíntotas usando las curvas de <em>timing</em> de Remotion.</span>
+      </div>
+      <div id="as-anim" class="plot" style="margin-top:10px"></div>
     </section>
   `;
+
+  // Estado compartido para el botón de animación.
+  let lastAnalysis = { expr: '', verticals: [], horizontals: [], obliques: [] };
 
   const calcular = async () => {
     const expr = document.getElementById('as-expr').value.trim();
     if (!expr) return;
+    lastAnalysis = { expr, verticals: [], horizontals: [], obliques: [] };
 
     // 1. Dominio: intento separar en P/Q
     const { dom, vertCandidates } = analizarDominio(expr);
@@ -121,6 +132,7 @@ export async function renderAsintotas(root) {
         const r = numericLimit(expr, a, { h: 1e-5 });
         const lim = approx(r.left, r.right) ? fmt(r.left) : `${fmt(r.left)} \\;|\\; ${fmt(r.right)}`;
         const isVert = !isFinite(r.left) || !isFinite(r.right);
+        if (isVert) lastAnalysis.verticals.push(a);
         return `<div class="result ${isVert ? 'ok' : 'err'}">
           En $x=${a}$: $\\lim^- = ${fmt(r.left)}$, $\\lim^+ = ${fmt(r.right)}$ →
           <strong>${isVert ? `✅ Asíntota vertical: $x = ${a}$` : '❌ No es asíntota (salto finito o evitable)'}</strong>
@@ -133,11 +145,12 @@ export async function renderAsintotas(root) {
     const Lpos = numericLimit(expr, 0, { infinity: true, fromNeg: false }).value;
     const Lneg = numericLimit(expr, 0, { infinity: true, fromNeg: true }).value;
     let hHtml = '';
-    if (isFinite(Lpos)) hHtml += `<div class="result ok">En $+\\infty$: $\\lim = ${fmt(Lpos)}$ → <strong>y = ${fmt(Lpos)}</strong></div>`;
+    if (isFinite(Lpos)) { hHtml += `<div class="result ok">En $+\\infty$: $\\lim = ${fmt(Lpos)}$ → <strong>y = ${fmt(Lpos)}</strong></div>`; lastAnalysis.horizontals.push(+Lpos.toFixed(4)); }
     else hHtml += `<div class="result err">En $+\\infty$: $\\lim = ${fmt(Lpos)}$ → no hay horizontal (puede haber oblicua)</div>`;
-    if (isFinite(Lneg)) hHtml += `<div class="result ok">En $-\\infty$: $\\lim = ${fmt(Lneg)}$ → <strong>y = ${fmt(Lneg)}</strong></div>`;
+    if (isFinite(Lneg)) { hHtml += `<div class="result ok">En $-\\infty$: $\\lim = ${fmt(Lneg)}$ → <strong>y = ${fmt(Lneg)}</strong></div>`; if (+Lneg.toFixed(4) !== +Lpos?.toFixed?.(4)) lastAnalysis.horizontals.push(+Lneg.toFixed(4)); }
     else hHtml += `<div class="result err">En $-\\infty$: $\\lim = ${fmt(Lneg)}$ → no hay horizontal (puede haber oblicua)</div>`;
     hBox.innerHTML = hHtml;
+    lastAnalysis.horizontals = [...new Set(lastAnalysis.horizontals)];
 
     // 4. Oblicuas: m = lim f(x)/x,  n = lim (f(x) - m x)
     const oBox = document.getElementById('as-obliq');
@@ -155,6 +168,10 @@ export async function renderAsintotas(root) {
         oHtml += `<div class="result err">En ${dir > 0 ? '+∞' : '−∞'}: m = ${fmt(m)}, pero n diverge.</div>`;
       } else {
         oHtml += `<div class="result ok">En ${dir > 0 ? '+∞' : '−∞'}: m = ${fmt(m)}, n = ${fmt(n)} → <strong>y = ${fmt(m)}x ${n >= 0 ? '+' : '−'} ${fmt(Math.abs(n))}</strong></div>`;
+        const mr = +m.toFixed(4), nr = +n.toFixed(4);
+        if (!lastAnalysis.obliques.some(o => o.m === mr && o.n === nr)) {
+          lastAnalysis.obliques.push({ m: mr, n: nr });
+        }
       }
     }
     oBox.innerHTML = oHtml;
@@ -183,6 +200,29 @@ export async function renderAsintotas(root) {
 
   document.getElementById('as-calc').addEventListener('click', calcular);
   document.getElementById('as-expr').addEventListener('keydown', e => { if (e.key === 'Enter') calcular(); });
+
+  const animBtn = document.getElementById('as-animate');
+  animBtn.addEventListener('click', async () => {
+    const expr = document.getElementById('as-expr').value.trim();
+    if (!expr) return;
+    if (lastAnalysis.expr !== expr) await calcular();
+    const container = document.getElementById('as-anim');
+    animBtn.disabled = true;
+    animBtn.textContent = '🎬 Animando…';
+    try {
+      await animateAsintotas(container, expr, {
+        verticals: lastAnalysis.verticals,
+        horizontals: lastAnalysis.horizontals,
+        obliques: lastAnalysis.obliques,
+      });
+    } catch (e) {
+      container.innerHTML = `<div class="result err">Error en la animación: ${e.message}</div>`;
+    } finally {
+      animBtn.disabled = false;
+      animBtn.textContent = '🎬 Reproducir otra vez';
+    }
+  });
+
   calcular();
 }
 

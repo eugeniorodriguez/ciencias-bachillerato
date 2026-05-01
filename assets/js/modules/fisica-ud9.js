@@ -157,6 +157,103 @@ export async function renderFisicaUd9(root) {
     </section>
 
     <section class="panel">
+      <h2>📝 Actividad 3 — Barca cruzando un río</h2>
+      <p>Una barca a motor sale de un muelle y cruza un río a $v_b = 15$ m/s. La corriente del río es de $v_c = 2$ m/s. El río tiene un ancho de $300$ m. Calcula el <strong>punto de llegada de la barca respecto del muelle</strong>.</p>
+
+      <details>
+        <summary><strong>Solución paso a paso</strong></summary>
+        <div class="theory">
+          <h4>Paso 1 — Elegimos los ejes</h4>
+          <ul class="clean">
+            <li>📐 Eje $y$ = dirección perpendicular a la orilla (ancho del río).</li>
+            <li>📐 Eje $x$ = dirección de la corriente (paralela a la orilla).</li>
+          </ul>
+          <p>El barco apunta perpendicular a la orilla, así que $\\vec{v}_b = 15\\,\\vec{j}$ m/s. La corriente arrastra paralela a la orilla: $\\vec{v}_c = 2\\,\\vec{i}$ m/s.</p>
+
+          <h4>Paso 2 — Galileo: dos MRU independientes</h4>
+          <p>En cada eje hay un MRU:</p>
+          <ul class="clean">
+            <li>🟦 En $y$ (atravesando): $y(t) = 15\\,t$. El barco solo se mueve aquí por su propio motor.</li>
+            <li>🟧 En $x$ (arrastre): $x(t) = 2\\,t$. La corriente solo arrastra en este eje.</li>
+          </ul>
+
+          <h4>Paso 3 — ¿Cuándo llega a la otra orilla?</h4>
+          <p>Llega cuando $y = 300$ m: $\\;\\;300 = 15\\,t \\;\\Rightarrow\\; t = 20$ s.</p>
+
+          <h4>Paso 4 — ¿Cuánto le ha arrastrado la corriente en ese tiempo?</h4>
+          <p>$x = 2 \\cdot 20 = 40$ m aguas abajo.</p>
+
+          <h4>Resultado</h4>
+          <p style="font-size: 1.1em; text-align:center">$$\\boxed{\\vec{r} = 40\\,\\vec{i} + 300\\,\\vec{j} \\;\\;\\text{m}}$$</p>
+          <p>La barca llega a un punto situado a $300$ m al otro lado del río y $40$ m aguas abajo del muelle. La distancia recorrida es $|\\vec{r}| = \\sqrt{40^2 + 300^2} \\approx 302{,}66$ m, formando con la corriente un ángulo $\\alpha = \\arctan(300/40) \\approx 82{,}4°$ (casi perpendicular, porque el motor es mucho más rápido que la corriente).</p>
+          <p class="hint">💡 Observa que el resultado <em>no depende</em> de cómo combines los movimientos: cada eje vive su propio MRU. Eso es el principio de Galileo en estado puro.</p>
+        </div>
+      </details>
+    </section>
+
+    <section class="panel">
+      <h2>📝 Actividad 4 — Barca con ángulo respecto a la orilla</h2>
+      <p>Una barca cruza un río con velocidad $v_b = 5$ m/s formando un <strong>ángulo de $135°$ con la orilla</strong>. La corriente del río tiene una velocidad $v_c = 3$ m/s y el río tiene $100$ m de ancho. Calcula el punto de llegada.</p>
+
+      <details>
+        <summary><strong>Solución paso a paso</strong></summary>
+        <div class="theory">
+          <h4>Paso 1 — Geometría: ¿qué significa "135° con la orilla"?</h4>
+          <p>Tomamos el eje $x$ paralelo a la orilla (sentido de la corriente) y el eje $y$ perpendicular a ella (cruzando el río). Un ángulo de $135°$ medido desde la orilla significa que la barca apunta hacia el otro lado <em>pero ligeramente aguas arriba</em> (en el 2.º cuadrante).</p>
+
+          <h4>Paso 2 — Componentes de la velocidad de la barca</h4>
+          <p>$v_{bx} = v_b \\cos 135° = 5 \\cdot \\left(-\\dfrac{\\sqrt{2}}{2}\\right) \\approx -3{,}54$ m/s &nbsp; (aguas arriba)</p>
+          <p>$v_{by} = v_b \\sin 135° = 5 \\cdot \\dfrac{\\sqrt{2}}{2} \\approx 3{,}54$ m/s &nbsp; (cruzando el río)</p>
+
+          <h4>Paso 3 — Velocidad real (suma vectorial)</h4>
+          <p>La corriente solo aporta en $x$: $\\vec{v}_c = 3\\,\\vec{i}$ m/s.</p>
+          <p>$v_x = v_{bx} + v_{cx} = -3{,}54 + 3 = -0{,}54$ m/s &nbsp; (aún algo aguas arriba)</p>
+          <p>$v_y = v_{by} = 3{,}54$ m/s</p>
+
+          <h4>Paso 4 — Tiempo de cruce</h4>
+          <p>$t = \\dfrac{100}{v_y} = \\dfrac{100}{3{,}54} \\approx 28{,}28$ s</p>
+
+          <h4>Paso 5 — Posición de llegada</h4>
+          <p>$x = v_x \\cdot t = -0{,}54 \\cdot 28{,}28 \\approx -15{,}15$ m</p>
+          <p>$y = 100$ m</p>
+          <p style="font-size: 1.1em; text-align:center">$$\\boxed{\\vec{r} \\approx -15{,}15\\,\\vec{i} + 100\\,\\vec{j} \\;\\;\\text{m}}$$</p>
+          <p>La barca llega al otro lado del río, a $\\approx 15{,}15$ m <em>aguas arriba</em> del muelle. La distancia total recorrida es $|\\vec{r}| \\approx 101{,}14$ m.</p>
+          <p class="hint">💡 Aunque la corriente empuja aguas abajo, la barca apuntaba lo suficientemente "contra-corriente" (135° = 45° hacia atrás) como para terminar 15 m río arriba. Si quisieras llegar justo enfrente, tendrías que ajustar el ángulo para que $v_{bx}$ cancelase exactamente $v_c$: $5\\cos\\theta = -3 \\Rightarrow \\theta \\approx 126{,}87°$.</p>
+        </div>
+      </details>
+    </section>
+
+    <section class="panel">
+      <h2>📝 Actividad 5 — Nadador y velocidad del río</h2>
+      <p>Un río tiene una anchura de $100$ m. Un nadador quiere cruzarlo <strong>perpendicularmente</strong> a la corriente, pero acaba pasando $20$ m aguas abajo. Si la velocidad del nadador es de $2$ m/s, ¿qué velocidad lleva el río?</p>
+
+      <details>
+        <summary><strong>Solución paso a paso</strong></summary>
+        <div class="theory">
+          <h4>Paso 1 — Identificamos los ejes y los datos</h4>
+          <ul class="clean">
+            <li>🏊 $v_n = 2$ m/s, perpendicular a la corriente: $\\vec{v}_n = 2\\,\\vec{j}$.</li>
+            <li>🌊 $\\vec{v}_r = v_r\\,\\vec{i}$ (incógnita).</li>
+            <li>📏 Anchura $y = 100$ m, deriva $x = 20$ m.</li>
+          </ul>
+
+          <h4>Paso 2 — Tiempo en cruzar el río</h4>
+          <p>El movimiento en $y$ depende solo del nadador (Galileo). Por tanto:</p>
+          <p>$t = \\dfrac{y}{v_n} = \\dfrac{100}{2} = 50$ s</p>
+
+          <h4>Paso 3 — Velocidad del río</h4>
+          <p>El arrastre lateral lo provoca solo el río. En $50$ s el nadador se desplaza $20$ m en $x$:</p>
+          <p>$v_r = \\dfrac{x}{t} = \\dfrac{20}{50} = \\boxed{0{,}4 \\;\\text{m/s}}$</p>
+
+          <h4>Bonus — ¿A qué velocidad llega realmente el nadador?</h4>
+          <p>$|\\vec{v}| = \\sqrt{v_n^2 + v_r^2} = \\sqrt{2^2 + 0{,}4^2} \\approx 2{,}04$ m/s</p>
+          <p>Y el ángulo respecto a la dirección perpendicular a la orilla: $\\alpha = \\arctan(0{,}4/2) \\approx 11{,}3°$.</p>
+          <p class="hint">💡 La clave del problema es darse cuenta de que el tiempo de cruce <strong>no depende de la corriente</strong>, solo del nadador (eje $y$ aislado). Una vez tienes $t$, despejas $v_r$ del eje $x$.</p>
+        </div>
+      </details>
+    </section>
+
+    <section class="panel">
       <h2>4. Principio de Galileo</h2>
       <div class="theory">
         <h4>Enunciado</h4>

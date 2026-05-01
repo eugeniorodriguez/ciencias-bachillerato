@@ -1056,18 +1056,81 @@ export async function renderFisicaUd9(root) {
         <div class="theory">
           <p><em>Un astronauta juega al golf en la Luna ($g = 1{,}6$ m/s²) e impulsa una pelota a 25 m/s con un ángulo de 45°. Calcula: a) alcance máximo; b) altura máxima.</em></p>
 
-          <h4>Componentes de la velocidad</h4>
-          <p>$v_x = 25\\cos 45° = 25\\cdot\\dfrac{\\sqrt{2}}{2} \\approx 17{,}68$ m/s</p>
-          <p>$v_y = 25\\sin 45° \\approx 17{,}68$ m/s</p>
+          <h4>🧭 Esquema de resolución (orden recomendado para cualquier tiro oblicuo)</h4>
+          <ol>
+            <li><strong>Paso 0</strong>: Descomponer $\\vec{v}_0$ en $v_x$ y $v_y$ con coseno y seno.</li>
+            <li><strong>Paso 1</strong>: Tiempo de vuelo $t_v = \\dfrac{2\\,v_y}{g}$ (cuando $y_0 = 0$).</li>
+            <li><strong>Paso 2</strong>: Alcance $x_{\\max} = v_x\\cdot t_v$.</li>
+            <li><strong>Paso 3</strong>: Altura máxima evaluando $y(t)$ en $t = t_v/2$ (en el vértice $v_y = 0$).</li>
+          </ol>
 
-          <h4>a) Alcance máximo (sale y aterriza al mismo nivel: $h = 0$)</h4>
-          <p>$t_v = \\dfrac{2v_y}{g} = \\dfrac{2\\cdot 17{,}68}{1{,}6} \\approx 22{,}10$ s</p>
+          <h4>📐 Visualización de la trayectoria</h4>
+          <svg viewBox="0 0 480 220" width="100%" preserveAspectRatio="xMidYMid meet"
+               style="background: var(--panel-bg, #fff); border: 1px solid var(--border, #e2e8f0); border-radius: 10px;">
+            <!-- suelo -->
+            <line x1="20" y1="190" x2="460" y2="190" stroke="#475569" stroke-width="1.5"/>
+            <!-- parábola -->
+            <path d="M 30 190 Q 240 -40 450 190" stroke="#0ea5e9" stroke-width="2.5" fill="none"/>
+            <!-- v0 -->
+            <line x1="30" y1="190" x2="80" y2="140" stroke="#0ea5e9" stroke-width="2"/>
+            <polygon points="80,140 75,144 79,148" fill="#0ea5e9"/>
+            <text x="56" y="160" font-size="11" fill="#0c4a6e" font-style="italic">v₀</text>
+            <!-- ángulo -->
+            <path d="M 50 190 A 20 20 0 0 1 60 175" stroke="#f59e0b" stroke-width="1.5" fill="none"/>
+            <text x="55" y="186" font-size="10" fill="#b45309">α</text>
+            <!-- vértice -->
+            <circle cx="240" cy="65" r="3" fill="#10b981"/>
+            <line x1="240" y1="65" x2="280" y2="65" stroke="#10b981" stroke-width="2"/>
+            <polygon points="280,65 275,62 275,68" fill="#10b981"/>
+            <text x="248" y="58" font-size="11" fill="#047857">v_y = 0</text>
+            <line x1="240" y1="65" x2="240" y2="190" stroke="#10b981" stroke-width="1" stroke-dasharray="3 3"/>
+            <text x="246" y="135" font-size="11" fill="#047857" font-style="italic">y_max</text>
+            <!-- aterrizaje -->
+            <circle cx="450" cy="190" r="3" fill="#ef4444"/>
+            <text x="200" y="208" font-size="11" fill="#475569">x_max</text>
+            <line x1="30" y1="200" x2="450" y2="200" stroke="#475569" stroke-width="1" stroke-dasharray="4 3"/>
+            <!-- t_v/2 hint -->
+            <text x="160" y="50" font-size="11" fill="#475569">t = t_v/2</text>
+          </svg>
+
+          <h4>Paso 0 — Componentes de la velocidad inicial</h4>
+          <p>Como $\\alpha = 45°$, los dos catetos del triángulo de velocidades son iguales:</p>
+          <p>$v_x = v_0\\cos 45° = 25\\cdot\\dfrac{\\sqrt{2}}{2} \\approx 17{,}68$ m/s</p>
+          <p>$v_y = v_0\\sin 45° = 25\\cdot\\dfrac{\\sqrt{2}}{2} \\approx 17{,}68$ m/s</p>
+
+          <h4>Paso 1 — Tiempo de vuelo</h4>
+          <p>El astronauta golpea desde el suelo y la pelota cae al mismo nivel ($y_0 = 0$). Aplicamos la fórmula del tema:</p>
+          <p>$t_v = \\dfrac{2\\,v_y}{g} = \\dfrac{2\\cdot 17{,}68}{1{,}6} \\approx \\boxed{22{,}10\\;\\text{s}}$</p>
+
+          <h4>Paso 2 — Alcance máximo</h4>
+          <p>Eje X (MRU con $v_x$ constante):</p>
           <p>$x_{\\max} = v_x\\cdot t_v = 17{,}68\\cdot 22{,}10 \\approx \\boxed{390{,}6\\;\\text{m}}$</p>
-          <p class="hint">📐 Con la fórmula compacta del alcance en suelo plano: $x_{\\max} = \\dfrac{v_0^{\\,2}\\sin(2\\alpha)}{g} = \\dfrac{625\\cdot\\sin 90°}{1{,}6} = 390{,}625$ m. ¡Lo mismo!</p>
+          <p class="hint">📐 Comprobación con la fórmula compacta del alcance en suelo plano: $x_{\\max} = \\dfrac{v_0^{\\,2}\\sin(2\\alpha)}{g} = \\dfrac{625\\cdot\\sin 90°}{1{,}6} = 390{,}625$ m. ¡Lo mismo!</p>
 
-          <h4>b) Altura máxima</h4>
-          <p>$y_{\\max} = \\dfrac{v_y^{\\,2}}{2g} = \\dfrac{(17{,}68)^2}{2\\cdot 1{,}6} = \\dfrac{312{,}5}{3{,}2} \\approx \\boxed{97{,}66\\;\\text{m}}$</p>
-          <p class="hint">🌕 Comparado con la Tierra ($g = 9{,}8$), en la Luna el mismo golpe llega <em>seis veces</em> más lejos y unas seis veces más alto. La gravedad lunar es 6 veces menor que la terrestre.</p>
+          <h4>Paso 3 — Altura máxima (en el vértice, $t = t_v/2$)</h4>
+          <p>El detalle clave es que la pelota deja de subir cuando su componente vertical de velocidad se anula. Como $v_y(t) = v_{y0} - g\\,t$, eso ocurre en:</p>
+          <p>$t_{\\text{cima}} = \\dfrac{v_y}{g} = \\dfrac{t_v}{2} = \\dfrac{22{,}10}{2} = 11{,}05$ s</p>
+          <p>Sustituimos en la ecuación de la posición vertical $y(t) = v_y\\,t - \\tfrac{1}{2}\\,g\\,t^2$:</p>
+          <p>$y_{\\max} = 17{,}68\\cdot 11{,}05 - \\dfrac{1}{2}\\cdot 1{,}6\\cdot (11{,}05)^2$</p>
+          <p>$y_{\\max} = 195{,}36 - 97{,}70 \\approx \\boxed{97{,}66\\;\\text{m}}$</p>
+
+          <details>
+            <summary><strong>📚 Teoría base</strong> — por qué $t_{\\text{cima}} = t_v/2$ (y por qué $y_{\\max} = v_y^{\\,2}/2g$)</summary>
+            <div class="theory">
+              <h4>Tiempo en la cima</h4>
+              <p>En la cima la velocidad vertical se anula: $v_y(t_{\\text{cima}}) = v_{y0} - g\\,t_{\\text{cima}} = 0$, luego $t_{\\text{cima}} = v_{y0}/g$.</p>
+              <p>El tiempo de vuelo total (cuando $y$ vuelve a $0$) sale de $0 = v_{y0}\\,t_v - \\tfrac{1}{2}g\\,t_v^{\\,2} \\Rightarrow t_v = 2v_{y0}/g$. Por tanto:</p>
+              <p>$$t_{\\text{cima}} = \\dfrac{t_v}{2}$$</p>
+              <p>La parábola es <strong>simétrica</strong>: tarda lo mismo en subir que en bajar. Esto solo es exacto cuando $y_0 = 0$ (sale y vuelve al mismo plano).</p>
+
+              <h4>Fórmula compacta de la altura máxima</h4>
+              <p>Sustituyendo $t_{\\text{cima}} = v_{y0}/g$ en $y(t) = v_{y0}\\,t - \\tfrac{1}{2}g\\,t^2$:</p>
+              <p>$y_{\\max} = v_{y0}\\cdot\\dfrac{v_{y0}}{g} - \\dfrac{1}{2}g\\cdot\\dfrac{v_{y0}^{\\,2}}{g^2} = \\dfrac{v_{y0}^{\\,2}}{g} - \\dfrac{v_{y0}^{\\,2}}{2g} = \\dfrac{v_{y0}^{\\,2}}{2g}$</p>
+              <p>Verificación con el ejercicio: $y_{\\max} = (17{,}68)^2/(2\\cdot 1{,}6) = 312{,}5/3{,}2 \\approx 97{,}66$ m. ✅</p>
+            </div>
+          </details>
+
+          <p class="hint">🌕 <strong>Reflexión final</strong>: comparado con la Tierra ($g = 9{,}8$), en la Luna ($g = 1{,}6$, ≈ 6 veces menor) el mismo golpe llega <em>seis veces</em> más lejos y unas seis veces más alto. Tanto el alcance como la altura máxima son inversamente proporcionales a $g$.</p>
         </div>
       </details>
 

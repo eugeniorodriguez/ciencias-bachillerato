@@ -27,6 +27,33 @@ export async function renderFisicaUd9(root) {
         <h4>🎯 ¿Por qué es importante?</h4>
         <p>Porque a partir de ahora cada movimiento en 2D se va a tratar <strong>como dos movimientos independientes</strong>: uno en X y otro en Y. La combinación lineal es la "etiqueta" que nos permite separar lo que pasa en cada eje y luego volver a juntarlo.</p>
       </div>
+
+      <details>
+        <summary><strong>📚 Teoría base</strong> — qué es un vector y cómo se opera</summary>
+        <div class="theory">
+          <h4>Vector vs. escalar</h4>
+          <p>Un <strong>escalar</strong> es un número (por ejemplo, una temperatura: 23 °C). Un <strong>vector</strong> es un ente con tres rasgos:</p>
+          <ul class="clean">
+            <li>📏 <strong>Módulo</strong>: la longitud de la flecha (el "cuánto").</li>
+            <li>🧭 <strong>Dirección</strong>: la recta sobre la que vive (la "línea").</li>
+            <li>➡️ <strong>Sentido</strong>: hacia qué lado de esa recta apunta.</li>
+          </ul>
+
+          <h4>Vectores unitarios</h4>
+          <p>Vectores con módulo 1. Los más usados son la <strong>base canónica</strong> del plano:</p>
+          <p style="text-align:center">$\\vec{i} = (1, 0) \\quad\\quad \\vec{j} = (0, 1)$</p>
+          <p>Apuntan, respectivamente, al eje $X$ y al eje $Y$.</p>
+
+          <h4>Operaciones básicas (componente a componente)</h4>
+          <ul class="clean">
+            <li>➕ <strong>Suma</strong>: $(a_1, a_2) + (b_1, b_2) = (a_1+b_1,\\; a_2+b_2)$. Gráficamente: regla del paralelogramo o "punta con cola".</li>
+            <li>✖️ <strong>Producto por un escalar</strong>: $k\\cdot(a,b) = (ka, kb)$. Cambia la longitud (y el sentido si $k&lt;0$).</li>
+          </ul>
+
+          <h4>Combinación lineal</h4>
+          <p>Sumar varios vectores, cada uno multiplicado por un escalar. La expresión $\\vec{r} = x\\vec{i} + y\\vec{j}$ es <em>la</em> combinación lineal de la base canónica que reconstruye cualquier vector del plano.</p>
+        </div>
+      </details>
     </section>
 
     <section class="panel">
@@ -46,6 +73,39 @@ export async function renderFisicaUd9(root) {
         <p>El <strong>ángulo</strong>, despejando de las anteriores:</p>
         <p style="text-align:center">$$\\cos\\alpha = \\frac{x}{|\\vec{r}|}\\qquad \\sin\\alpha = \\frac{y}{|\\vec{r}|}\\qquad \\tan\\alpha = \\frac{y}{x}$$</p>
       </div>
+
+      <details>
+        <summary><strong>📚 Teoría base</strong> — razones trigonométricas y triángulo rectángulo</summary>
+        <div class="theory">
+          <h4>Triángulo rectángulo</h4>
+          <p>Un triángulo con un ángulo de exactamente $90°$. El lado <strong>opuesto al ángulo recto</strong> es la <strong>hipotenusa</strong> ($h$): el más largo. Los otros dos son los <strong>catetos</strong>. Respecto a un ángulo agudo $\\alpha$:</p>
+          <ul class="clean">
+            <li>🟦 <strong>Cateto opuesto</strong> ($\\text{co}$): el que no toca a $\\alpha$.</li>
+            <li>🟧 <strong>Cateto contiguo</strong> ($\\text{cc}$): el que sí toca a $\\alpha$ (sin ser la hipotenusa).</li>
+          </ul>
+
+          <h4>Las 6 razones trigonométricas</h4>
+          <table class="table">
+            <thead><tr><th>Razón</th><th>Definición</th><th>Recíproco</th></tr></thead>
+            <tbody>
+              <tr><td>$\\sin\\alpha$ (seno)</td><td>$\\dfrac{\\text{co}}{h}$</td><td>$\\csc\\alpha = \\dfrac{h}{\\text{co}}$ (cosecante)</td></tr>
+              <tr><td>$\\cos\\alpha$ (coseno)</td><td>$\\dfrac{\\text{cc}}{h}$</td><td>$\\sec\\alpha = \\dfrac{h}{\\text{cc}}$ (secante)</td></tr>
+              <tr><td>$\\tan\\alpha$ (tangente)</td><td>$\\dfrac{\\text{co}}{\\text{cc}} = \\dfrac{\\sin\\alpha}{\\cos\\alpha}$</td><td>$\\cot\\alpha = \\dfrac{\\text{cc}}{\\text{co}}$ (cotangente)</td></tr>
+            </tbody>
+          </table>
+
+          <h4>Identidad fundamental</h4>
+          <p>$\\sin^2\\alpha + \\cos^2\\alpha = 1$, válida para todo $\\alpha$. Sale directa de Pitágoras: si dividimos $\\text{co}^2 + \\text{cc}^2 = h^2$ entre $h^2$, queda $(\\text{co}/h)^2 + (\\text{cc}/h)^2 = 1$.</p>
+
+          <h4>Teorema de Pitágoras</h4>
+          <p>$h^2 = \\text{co}^2 + \\text{cc}^2$. De aquí sale el módulo de un vector: si $r_x$ y $r_y$ son los catetos, $|\\vec{r}|$ es la hipotenusa.</p>
+
+          <h4>Cómo se conecta con un vector $\\vec{r}$</h4>
+          <p>Al descomponer $\\vec{r}$ en sus componentes, $r_x$ es el cateto contiguo a $\\alpha$ y $r_y$ el opuesto. Aplicando las definiciones:</p>
+          <p>$\\cos\\alpha = \\dfrac{\\text{cc}}{h} = \\dfrac{r_x}{|\\vec{r}|} \\;\\Rightarrow\\; r_x = |\\vec{r}|\\cos\\alpha$</p>
+          <p>$\\sin\\alpha = \\dfrac{\\text{co}}{h} = \\dfrac{r_y}{|\\vec{r}|} \\;\\Rightarrow\\; r_y = |\\vec{r}|\\sin\\alpha$</p>
+        </div>
+      </details>
     </section>
 
     <section class="panel">
@@ -269,6 +329,32 @@ export async function renderFisicaUd9(root) {
           <li>🆕 <strong>Lo nuevo</strong>: ahora hay <em>dos</em> ecuaciones a la vez, una por eje. Galileo dice: trátalas por separado y suma.</li>
         </ul>
       </div>
+
+      <details>
+        <summary><strong>📚 Teoría base</strong> — Movimiento Rectilíneo Uniforme (MRU) en 1D</summary>
+        <div class="theory">
+          <h4>Definición</h4>
+          <p>Un cuerpo describe un MRU cuando recorre <strong>distancias iguales en tiempos iguales</strong> moviéndose en línea recta. La velocidad es constante y la aceleración es cero.</p>
+
+          <h4>Ecuación del movimiento</h4>
+          <p style="text-align:center; font-size: 1.1em">$$x(t) = x_0 + v\\cdot t$$</p>
+          <ul class="clean">
+            <li>$x_0$ — posición inicial (en $t = 0$).</li>
+            <li>$v$ — velocidad (constante, con signo según el sentido).</li>
+            <li>$t$ — tiempo.</li>
+          </ul>
+
+          <h4>Magnitudes derivadas</h4>
+          <ul class="clean">
+            <li>📍 <strong>Desplazamiento</strong>: $\\Delta x = x - x_0 = v\\cdot t$.</li>
+            <li>⏱️ <strong>Tiempo de recorrido</strong>: $t = \\dfrac{\\Delta x}{v}$.</li>
+            <li>🚀 <strong>Velocidad</strong>: $v = \\dfrac{\\Delta x}{t}$.</li>
+          </ul>
+
+          <h4>Por qué se usa aquí</h4>
+          <p>El principio de Galileo dice que cada eje vive su propio MRU independientemente del otro. Para resolver problemas en 2D usaremos $x = v_x \\cdot t$ y $y = v_y \\cdot t$ por separado, y al final sumaremos los resultados como vectores.</p>
+        </div>
+      </details>
     </section>
 
     <section class="panel">
@@ -285,6 +371,25 @@ export async function renderFisicaUd9(root) {
         <p>El módulo lo da Pitágoras y la dirección la da el coseno o el seno. Cada eje vive su propio MRU.</p>
         <p class="hint">📐 Si el barco rema a 3 m/s perpendicular a una corriente de 4 m/s, su velocidad real es $\\sqrt{3^2 + 4^2} = 5$ m/s, formando un ángulo $\\alpha = \\arctan(4/3) \\approx 53°$ con la dirección de remado.</p>
       </div>
+
+      <details>
+        <summary><strong>📚 Teoría base</strong> — suma vectorial componente a componente</summary>
+        <div class="theory">
+          <h4>Suma de dos vectores</h4>
+          <p>Dados dos vectores en el plano $\\vec{A} = (a_1, a_2)$ y $\\vec{B} = (b_1, b_2)$, su suma es:</p>
+          <p style="text-align:center; font-size: 1.1em">$$\\vec{A} + \\vec{B} = (a_1 + b_1,\\; a_2 + b_2)$$</p>
+          <p>Es decir, <strong>cada componente se suma con la del otro vector</strong>, eje a eje. No se mezclan.</p>
+
+          <h4>Interpretación gráfica</h4>
+          <ul class="clean">
+            <li>🔺 <strong>Regla del paralelogramo</strong>: dibujas los dos vectores con el mismo origen; la diagonal del paralelogramo que forman es $\\vec{A} + \\vec{B}$.</li>
+            <li>🪄 <strong>Punta con cola</strong>: pones $\\vec{B}$ partiendo de la punta de $\\vec{A}$; la flecha desde el origen de $\\vec{A}$ hasta la punta final de $\\vec{B}$ es la suma.</li>
+          </ul>
+
+          <h4>¡Ojo! Módulos no se suman como números</h4>
+          <p>En general $|\\vec{A} + \\vec{B}| \\ne |\\vec{A}| + |\\vec{B}|$. La igualdad solo se da si los vectores son <em>paralelos y del mismo sentido</em>. Si son perpendiculares, hay que aplicar Pitágoras: $|\\vec{A} + \\vec{B}| = \\sqrt{|\\vec{A}|^2 + |\\vec{B}|^2}$.</p>
+        </div>
+      </details>
     </section>
 
     <section class="panel">

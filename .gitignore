@@ -7,3 +7,9 @@ node_modules/
 
 # Sobrescribe posibles ignores globales.
 !index.html
+# Versionamos solo las skills propias del repo (no las descargadas).
+!.claude/
+.claude/*
+!.claude/skills/
+.claude/skills/*
+!.claude/skills/teoria-base-plegada/

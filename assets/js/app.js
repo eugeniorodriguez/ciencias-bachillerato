@@ -15,6 +15,8 @@ import { renderLaboratorio } from './modules/laboratorio.js';
 import { renderChuleta } from './modules/chuleta.js';
 import { renderUd7Funciones } from './modules/ud7-funciones.js';
 import { renderUd11Derivadas } from './modules/ud11-derivadas.js';
+import { renderFisica1Bach } from './modules/fisica-1bach.js';
+import { renderFisicaUd9 } from './modules/fisica-ud9.js';
 import { renderUd1NumerosReales } from './modules/ud1-numeros-reales.js';
 import { renderUd2Polinomios } from './modules/ud2-polinomios.js';
 import { renderUd3Ecuaciones } from './modules/ud3-ecuaciones.js';
@@ -59,6 +61,8 @@ const routes = {
   'ud12': renderUd12Estadistica,
   'ud13': renderUd13Probabilidad,
   'ud14': renderUd14Distribuciones,
+  'fisica-1bach': renderFisica1Bach,
+  'fisica-ud9': renderFisicaUd9,
 };
 
 // Breadcrumbs y flag "es sección interna de UD10".
@@ -87,6 +91,8 @@ const BREADCRUMBS = {
   'ud12':         udCrumbs('UD 12 · Estadística descriptiva'),
   'ud13':         udCrumbs('UD 13 · Probabilidad'),
   'ud14':         udCrumbs('UD 14 · Distribuciones'),
+  'fisica-1bach': [{ href: '#/', label: 'Inicio' }, { href: '#/fisica', label: 'Física' }, { label: '1.º Bachillerato' }],
+  'fisica-ud9':   [{ href: '#/', label: 'Inicio' }, { href: '#/fisica', label: 'Física' }, { href: '#/fisica-1bach', label: '1.º Bachillerato' }, { label: 'UD 9 · Movimientos en dos dimensiones' }],
 };
 
 function udCrumbs(label) {
@@ -158,7 +164,8 @@ function updateBrand(route) {
   if (UD10_SECTIONS.has(route)) sub.textContent = 'Matemáticas · 1.º Bachillerato · UD 10';
   else if (udMatch) sub.textContent = `Matemáticas · 1.º Bachillerato · UD ${udMatch[1]}`;
   else if (route === 'matematicas' || route === 'mates-1bach') sub.textContent = 'Matemáticas';
-  else if (route === 'fisica') sub.textContent = 'Física';
+  else if (route === 'fisica-ud9') sub.textContent = 'Física · 1.º Bachillerato · UD 9';
+  else if (route === 'fisica' || route === 'fisica-1bach') sub.textContent = 'Física';
   else if (route === 'quimica') sub.textContent = 'Química';
   else if (route === 'tecnologia') sub.textContent = 'Tecnología';
   else sub.textContent = 'Matemáticas · Física · Química · Tecnología';

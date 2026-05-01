@@ -14,7 +14,7 @@ export async function renderHub(root) {
         <div class="course-label">Asignaturas</div>
         <div>
           <h2 class="course-title">Elige una asignatura</h2>
-          <p class="course-desc">Selecciona una asignatura para entrar en sus cursos y unidades. Por ahora, Matemáticas de 1.º tiene contenido completo. Las demás están preparadas para ir llenándose.</p>
+          <p class="course-desc">Selecciona una asignatura para entrar en sus cursos y unidades. Matemáticas y Física de 1.º Bachillerato ya tienen unidades disponibles; Química y Tecnología se irán llenando.</p>
         </div>
       </header>
 
@@ -34,7 +34,7 @@ export async function renderHub(root) {
             <h3>Física</h3>
             <p>Cinemática, dinámica, energía, ondas, electromagnetismo, física moderna.</p>
           </div>
-          <span class="chip">Próximamente</span>
+          <span class="chip ok">Con contenido</span>
         </a>
 
         <a class="card asignatura" href="#/quimica" data-color="qui">

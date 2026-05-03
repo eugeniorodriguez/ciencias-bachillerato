@@ -1,19 +1,35 @@
-import { renderAsignaturaPlaceholder } from './placeholder.js';
-
+// Tecnología e Ingeniería: vista de los cursos.
 export async function renderTecnologia(root) {
-  root.innerHTML = renderAsignaturaPlaceholder({
-    nombre: 'Tecnología',
-    mark: '⚙︎',
-    descripcion: 'Tecnología Industrial y TIC de Bachillerato: sistemas electrónicos, neumáticos, materiales, programación y diseño.',
-    bloques: [
-      { title: 'Materiales',                desc: 'Propiedades, metales, polímeros, cerámicos, composites, ensayos.' },
-      { title: 'Sistemas mecánicos',        desc: 'Máquinas, transmisiones, engranajes, trenes de palancas.' },
-      { title: 'Sistemas eléctricos',       desc: 'Circuitos de CC y CA, ley de Ohm, Kirchhoff, potencia, generadores.' },
-      { title: 'Electrónica analógica',     desc: 'Diodos, transistores, amplificadores operacionales.' },
-      { title: 'Electrónica digital',       desc: 'Puertas lógicas, álgebra de Boole, combinacionales, secuenciales.' },
-      { title: 'Sistemas de control',       desc: 'Lazo abierto/cerrado, PID, automatización.' },
-      { title: 'Neumática e hidráulica',    desc: 'Componentes, circuitos, simulación.' },
-      { title: 'Programación',              desc: 'Pseudocódigo, algoritmos, Python/Arduino, control de periféricos.' },
-    ],
-  });
+  root.innerHTML = `
+    <section class="hero">
+      <div class="hero-eyebrow">Asignatura</div>
+      <h1><span style="color: var(--accent)">⚙︎</span> Tecnología e Ingeniería</h1>
+      <p class="hero-lead">
+        Materiales, máquinas, energía, circuitos eléctricos y electrónica, sistemas de control y programación. Elige curso para ver las unidades disponibles.
+      </p>
+    </section>
+
+    <section class="course-section">
+      <header class="course-header">
+        <div class="course-label">Cursos</div>
+        <div>
+          <h2 class="course-title">1.º y 2.º de Bachillerato</h2>
+          <p class="course-desc">Selecciona un curso para ver sus unidades didácticas.</p>
+        </div>
+      </header>
+
+      <div class="grid">
+        <a class="card" href="#/tecno-1bach">
+          <h3>1.º Bachillerato</h3>
+          <p>Materiales, mecánica, energía, circuitos eléctricos y máquinas, electrónica, control y programación.</p>
+          <span class="chip ok" style="margin-top:10px">UD 5 disponible</span>
+        </a>
+        <div class="card" style="opacity:0.7; cursor:default">
+          <h3>2.º Bachillerato</h3>
+          <p>Sistemas automáticos, electrónica avanzada, neumática e hidráulica, redes, IoT y diseño industrial.</p>
+          <span class="chip" style="margin-top:10px">Próximamente</span>
+        </div>
+      </div>
+    </section>
+  `;
 }

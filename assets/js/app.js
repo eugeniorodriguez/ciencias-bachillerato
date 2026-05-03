@@ -17,6 +17,8 @@ import { renderUd7Funciones } from './modules/ud7-funciones.js';
 import { renderUd11Derivadas } from './modules/ud11-derivadas.js';
 import { renderFisica1Bach } from './modules/fisica-1bach.js';
 import { renderFisicaUd9 } from './modules/fisica-ud9.js';
+import { renderTecno1Bach } from './modules/tecno-1bach.js';
+import { renderTecnoUd5 } from './modules/tecno-ud5.js';
 import { renderUd1NumerosReales } from './modules/ud1-numeros-reales.js';
 import { renderUd2Polinomios } from './modules/ud2-polinomios.js';
 import { renderUd3Ecuaciones } from './modules/ud3-ecuaciones.js';
@@ -63,6 +65,8 @@ const routes = {
   'ud14': renderUd14Distribuciones,
   'fisica-1bach': renderFisica1Bach,
   'fisica-ud9': renderFisicaUd9,
+  'tecno-1bach': renderTecno1Bach,
+  'tecno-ud5': renderTecnoUd5,
 };
 
 // Breadcrumbs y flag "es sección interna de UD10".
@@ -93,6 +97,8 @@ const BREADCRUMBS = {
   'ud14':         udCrumbs('UD 14 · Distribuciones'),
   'fisica-1bach': [{ href: '#/', label: 'Inicio' }, { href: '#/fisica', label: 'Física' }, { label: '1.º Bachillerato' }],
   'fisica-ud9':   [{ href: '#/', label: 'Inicio' }, { href: '#/fisica', label: 'Física' }, { href: '#/fisica-1bach', label: '1.º Bachillerato' }, { label: 'UD 9 · Movimientos en dos dimensiones' }],
+  'tecno-1bach':  [{ href: '#/', label: 'Inicio' }, { href: '#/tecnologia', label: 'Tecnología' }, { label: '1.º Bachillerato' }],
+  'tecno-ud5':    [{ href: '#/', label: 'Inicio' }, { href: '#/tecnologia', label: 'Tecnología' }, { href: '#/tecno-1bach', label: '1.º Bachillerato' }, { label: 'UD 5 · Circuitos y máquinas eléctricas' }],
 };
 
 function udCrumbs(label) {
@@ -167,7 +173,8 @@ function updateBrand(route) {
   else if (route === 'fisica-ud9') sub.textContent = 'Física · 1.º Bachillerato · UD 9';
   else if (route === 'fisica' || route === 'fisica-1bach') sub.textContent = 'Física';
   else if (route === 'quimica') sub.textContent = 'Química';
-  else if (route === 'tecnologia') sub.textContent = 'Tecnología';
+  else if (route === 'tecno-ud5') sub.textContent = 'Tecnología · 1.º Bachillerato · UD 5';
+  else if (route === 'tecnologia' || route === 'tecno-1bach') sub.textContent = 'Tecnología';
   else sub.textContent = 'Matemáticas · Física · Química · Tecnología';
 }
 

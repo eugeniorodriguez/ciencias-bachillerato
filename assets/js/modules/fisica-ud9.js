@@ -41,6 +41,7 @@ export async function renderFisicaUd9(root) {
         <li class="toc-item toc-item--exercise"><span class="toc-chip">Ejercicio</span><a href="#actividad-10-saque-de-portero">📝 Actividad 10 — Saque de portero</a></li>
         <li class="toc-item toc-item--exercise"><span class="toc-chip">Ejercicio</span><a href="#actividad-11-nina-lanzando-un-avion-de-papel">📝 Actividad 11 — Niña lanzando un avión de papel</a></li>
         <li class="toc-item toc-item--theory"><span class="toc-chip">Teoría</span><a href="#9-movimiento-circular-magnitudes-angulares">9. Movimiento circular: magnitudes angulares</a></li>
+        <li class="toc-item toc-item--interactive"><span class="toc-chip">Interactivo</span><a href="#explorador-de-radianes">🧪 Explorador de radianes ($\varphi = s/R$)</a></li>
         <li class="toc-item toc-item--exercise"><span class="toc-chip">Ejercicio</span><a href="#actividad-12-disco-rotando">📝 Actividad 12 — Disco rotando</a></li>
         <li class="toc-item toc-item--exercise"><span class="toc-chip">Ejercicio</span><a href="#actividad-13-velocista-vs-indycar">📝 Actividad 13 — Velocista vs Indycar</a></li>
         <li class="toc-item toc-item--exercise"><span class="toc-chip">Ejercicio</span><a href="#actividad-14-ventilador-acelerando">📝 Actividad 14 — Ventilador acelerando</a></li>
@@ -726,6 +727,48 @@ export async function renderFisicaUd9(root) {
       </details>
     </section>
 
+    <section class="panel panel--interactive">
+      <h2 id="explorador-de-radianes">🧪 Explorador de radianes ($\\varphi = s/R$)</h2>
+      <p class="hint">Mueve los <em>sliders</em> y observa cómo el <strong>arco $s$</strong> (verde) crece con el <strong>ángulo $\\varphi$</strong> y el <strong>radio $R$</strong> (rojo).</p>
+      <div class="row" style="gap: 18px; flex-wrap: wrap; align-items: flex-start">
+        <div style="flex: 1; min-width: 260px">
+          <div class="row">
+            <div>
+              <label>Radio $R$ (m)</label>
+              <input id="mc-r" type="range" min="0.5" max="3" step="0.1" value="2" style="width: 220px"/>
+              <div style="margin-top:4px">$R$ = <strong id="mc-r-val">2.0</strong> m</div>
+            </div>
+          </div>
+          <div class="row" style="margin-top:8px">
+            <div>
+              <label>Ángulo $\\varphi$ (rad)</label>
+              <input id="mc-phi" type="range" min="0" max="6.2832" step="0.01" value="1" style="width: 220px"/>
+              <div style="margin-top:4px">$\\varphi$ = <strong id="mc-phi-val">1.00</strong> rad</div>
+            </div>
+          </div>
+          <div id="mc-info" class="result info" style="margin-top:14px"></div>
+          <div class="row" style="margin-top:10px; flex-wrap:wrap; gap:6px">
+            <button class="btn" data-mc-preset="2,1">$\\varphi = 1$ rad ($s = R$)</button>
+            <button class="btn" data-mc-preset="2,3.14159">$\\pi$ rad (½ vuelta)</button>
+            <button class="btn" data-mc-preset="2,6.2832">$2\\pi$ rad (vuelta)</button>
+            <button class="btn" data-mc-preset="2,1.5708">$\\pi/2$ rad (¼)</button>
+          </div>
+        </div>
+        <div style="flex: 1; min-width: 300px">
+          <div id="mc-svg"></div>
+        </div>
+      </div>
+      <div class="theory" style="margin-top: 14px">
+        <h4>🎯 Lectura visual</h4>
+        <ul class="clean">
+          <li>📏 <strong>$R$</strong> (rojo): la distancia del centro al móvil. Es el <em>radio</em> de la trayectoria.</li>
+          <li>🟢 <strong>$s$</strong> (verde): la distancia recorrida <em>siguiendo la circunferencia</em>. Es la longitud del arco.</li>
+          <li>📐 <strong>$\\varphi$</strong> (azul): cuántos "radios" caben en ese arco. Por eso $\\varphi = s/R$ es <em>adimensional</em>.</li>
+          <li>👀 Cuando $\\varphi = 1$ rad, el arco $s$ mide exactamente $R$. <em>Esa</em> es la definición del radián.</li>
+        </ul>
+      </div>
+    </section>
+
     <section class="panel panel--exercise">
       <h2 id="actividad-12-disco-rotando">📝 Actividad 12 — Disco rotando</h2>
       <p>Un disco de $12$ cm de radio da $3$ vueltas y media en $15$ segundos. Calcula:</p>
@@ -1293,6 +1336,77 @@ export async function renderFisicaUd9(root) {
       btn.textContent = '🎬 Reproducir otra vez';
     }
   });
+
+  // -- Explorador de radianes (φ = s/R) --
+  const mcR = $('mc-r'), mcPhi = $('mc-phi');
+  const mcRLab = $('mc-r-val'), mcPhiLab = $('mc-phi-val');
+  const mcInfo = $('mc-info'), mcSvg = $('mc-svg');
+
+  const drawCircle = (R, phi) => {
+    const W = 360, H = 360, cx = W / 2, cy = H / 2;
+    const Rmin = 30, Rmax = 140;
+    const px = Rmin + (R - 0.5) / (3 - 0.5) * (Rmax - Rmin);
+    // SVG y-axis is inverted: usamos -phi para que el ángulo gire en sentido matemático (antihorario).
+    const ex = cx + px * Math.cos(-phi);
+    const ey = cy + px * Math.sin(-phi);
+    const large = phi > Math.PI ? 1 : 0;
+    const sweep = 0;
+    const arcD = phi < 0.001
+      ? ''
+      : `M ${cx + px} ${cy} A ${px} ${px} 0 ${large} ${sweep} ${ex.toFixed(2)} ${ey.toFixed(2)}`;
+    // Etiqueta de φ a media arc
+    const midAng = -phi / 2;
+    const labelR = Math.max(18, px * 0.35);
+    const phiLx = cx + labelR * Math.cos(midAng);
+    const phiLy = cy + labelR * Math.sin(midAng);
+    // Etiqueta de s desplazada hacia fuera del arco
+    const sLx = cx + (px + 18) * Math.cos(midAng);
+    const sLy = cy + (px + 18) * Math.sin(midAng);
+    mcSvg.innerHTML = `
+      <svg viewBox="0 0 ${W} ${H}" width="100%" style="max-width:340px; display:block; margin:0 auto;
+        background:#fafaf6; border:1px solid #e4ddd0; border-radius:12px">
+        <line x1="20" y1="${cy}" x2="${W - 20}" y2="${cy}" stroke="#d4ccb8" stroke-width="1"/>
+        <line x1="${cx}" y1="20" x2="${cx}" y2="${H - 20}" stroke="#d4ccb8" stroke-width="1"/>
+        <circle cx="${cx}" cy="${cy}" r="${px}" stroke="#a8a08d" stroke-width="1.2" fill="none" stroke-dasharray="3 3"/>
+        <line x1="${cx}" y1="${cy}" x2="${cx + px}" y2="${cy}" stroke="#9ca3af" stroke-width="1.4" stroke-dasharray="4 3"/>
+        ${arcD ? `<path d="${arcD}" stroke="#16a34a" stroke-width="6" fill="none" stroke-linecap="round" opacity="0.85"/>` : ''}
+        <line x1="${cx}" y1="${cy}" x2="${ex.toFixed(2)}" y2="${ey.toFixed(2)}" stroke="#dc2626" stroke-width="3"/>
+        <circle cx="${ex.toFixed(2)}" cy="${ey.toFixed(2)}" r="6" fill="#dc2626"/>
+        <circle cx="${cx}" cy="${cy}" r="3" fill="#1a1a1d"/>
+        <text x="${phiLx.toFixed(1)}" y="${(phiLy + 4).toFixed(1)}" font-size="14" fill="#1f3a8a" text-anchor="middle" font-weight="700">φ</text>
+        <text x="${((cx + ex) / 2 + 8).toFixed(1)}" y="${((cy + ey) / 2 - 6).toFixed(1)}" font-size="13" fill="#b91c1c" font-style="italic" font-weight="600">R</text>
+        <text x="${sLx.toFixed(1)}" y="${(sLy + 4).toFixed(1)}" font-size="14" fill="#15803d" text-anchor="middle" font-weight="700">s</text>
+      </svg>
+    `;
+  };
+
+  const updateMC = async () => {
+    const R = +mcR.value, phi = +mcPhi.value;
+    const s = R * phi;
+    const deg = phi * 180 / Math.PI;
+    mcRLab.textContent = R.toFixed(1);
+    mcPhiLab.textContent = phi.toFixed(2);
+    drawCircle(R, phi);
+    mcInfo.innerHTML = `
+      $R = ${R.toFixed(2)}\\,\\text{m}$<br>
+      $\\varphi = ${phi.toFixed(2)}\\,\\text{rad} = ${deg.toFixed(1)}°$<br>
+      $s = R\\cdot\\varphi = ${R.toFixed(2)}\\cdot ${phi.toFixed(2)} = \\boxed{${s.toFixed(2)}\\,\\text{m}}$<br>
+      $\\varphi = \\dfrac{s}{R} = \\dfrac{${s.toFixed(2)}}{${R.toFixed(2)}} = ${phi.toFixed(2)}\\,\\text{rad}$
+    `;
+    await typeset(mcInfo);
+  };
+
+  mcR.addEventListener('input', updateMC);
+  mcPhi.addEventListener('input', updateMC);
+  document.querySelectorAll('[data-mc-preset]').forEach(b => {
+    b.addEventListener('click', () => {
+      const [r, p] = b.dataset.mcPreset.split(',').map(Number);
+      mcR.value = r;
+      mcPhi.value = p;
+      updateMC();
+    });
+  });
+  await updateMC();
 }
 
 // --- SVG helpers ---

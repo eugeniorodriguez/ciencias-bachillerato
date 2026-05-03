@@ -190,7 +190,15 @@ async function render() {
   window.scrollTo({ top: 0, behavior: 'instant' });
 }
 
-window.addEventListener('hashchange', render);
+window.addEventListener('hashchange', () => {
+  // Si el hash es un ancla interna a la página actual (no una ruta), hacemos scroll y salimos.
+  const raw = (location.hash || '').replace(/^#\/?/, '').trim();
+  if (raw && !routes[raw] && document.getElementById(raw)) {
+    document.getElementById(raw).scrollIntoView({ behavior: 'smooth', block: 'start' });
+    return;
+  }
+  render();
+});
 window.addEventListener('DOMContentLoaded', () => {
   if (!location.hash) location.hash = '#/';
   setupTheme();

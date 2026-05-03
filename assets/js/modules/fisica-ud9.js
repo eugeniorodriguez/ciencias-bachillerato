@@ -711,6 +711,43 @@ export async function renderFisicaUd9(root) {
         <li>🔄 <strong>Múltiples vueltas</strong>: $\\varphi$ no se "reinicia" al pasar por $2\\pi$. Tras dos vueltas completas, $\\varphi = 4\\pi$ rad. Esto permite distinguir "ha pasado por aquí una vez" de "ha pasado por aquí tres veces".</li>
       </ul>
 
+      <h4>Radianes y vueltas: cómo "contar" la posición angular</h4>
+      <p>Cada <strong>vuelta completa</strong> equivale a un arco igual a la circunferencia entera, $s = 2\\pi R$. Aplicando $\\varphi = s/R$:</p>
+      <p style="text-align:center; font-size: 1.15em">$$1\\;\\text{vuelta} = \\dfrac{2\\pi R}{R} = 2\\pi\\;\\text{rad}$$</p>
+      <p>Como $\\varphi$ se acumula sin reiniciarse, basta con multiplicar el número de vueltas por $2\\pi$ para obtener la posición angular total:</p>
+      <p style="text-align:center; font-size: 1.15em">$$\\boxed{\\varphi = N\\cdot 2\\pi\\;\\text{rad}}\\quad\\text{(}N\\text{ = nº de vueltas, puede ser decimal)}$$</p>
+
+      <div class="theory">
+        <h4>🔢 Tabla de vueltas ↔ radianes ↔ grados</h4>
+        <table class="table">
+          <thead><tr><th>Vueltas</th><th>Fracción de vuelta</th><th>Radianes</th><th>Grados</th></tr></thead>
+          <tbody>
+            <tr><td>$\\tfrac{1}{8}$</td><td>$\\tfrac{1}{8}$ vuelta</td><td>$\\tfrac{\\pi}{4}$ rad</td><td>$45°$</td></tr>
+            <tr><td>$\\tfrac{1}{4}$</td><td>cuarto de vuelta</td><td>$\\tfrac{\\pi}{2}$ rad</td><td>$90°$</td></tr>
+            <tr><td>$\\tfrac{1}{2}$</td><td>media vuelta</td><td>$\\pi$ rad</td><td>$180°$</td></tr>
+            <tr><td>$\\tfrac{3}{4}$</td><td>tres cuartos</td><td>$\\tfrac{3\\pi}{2}$ rad</td><td>$270°$</td></tr>
+            <tr><td>$1$</td><td>una vuelta</td><td>$2\\pi$ rad</td><td>$360°$</td></tr>
+            <tr><td>$2$</td><td>dos vueltas</td><td>$4\\pi$ rad</td><td>$720°$</td></tr>
+            <tr><td>$3{,}5$</td><td>tres vueltas y media</td><td>$7\\pi$ rad</td><td>$1260°$</td></tr>
+            <tr><td>$N$</td><td>$N$ vueltas</td><td>$2\\pi N$ rad</td><td>$360°\\cdot N$</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h4>🧮 Pasar de vueltas a radianes (y al revés)</h4>
+      <ul class="clean">
+        <li>📥 <strong>Vueltas → radianes</strong>: multiplica por $2\\pi$. &nbsp;Ej.: $4{,}25$ vueltas $= 4{,}25 \\cdot 2\\pi = 8{,}5\\pi \\approx 26{,}70$ rad.</li>
+        <li>📤 <strong>Radianes → vueltas</strong>: divide entre $2\\pi$. &nbsp;Ej.: $10\\pi$ rad $/\\,2\\pi = 5$ vueltas.</li>
+        <li>📐 <strong>Grados → radianes</strong>: multiplica por $\\pi/180$. &nbsp;Ej.: $30° \\cdot \\pi/180 = \\pi/6$ rad.</li>
+      </ul>
+
+      <div class="theory">
+        <h4>👀 Ejemplo práctico</h4>
+        <p>Una rueda parte del origen ($\\varphi_0 = 0$) y completa <strong>3 vueltas y un cuarto</strong> en sentido antihorario. ¿Cuál es su posición angular?</p>
+        <p>$\\varphi = (3 + \\tfrac{1}{4})\\cdot 2\\pi = 3{,}25 \\cdot 2\\pi = 6{,}5\\pi \\;\\text{rad} \\approx 20{,}42\\;\\text{rad}$.</p>
+        <p>📌 <strong>Truco</strong>: para saber en qué <em>punto</em> de la circunferencia está al final, basta con quedarse con el resto al dividir entre $2\\pi$: $6{,}5\\pi - 3\\cdot 2\\pi = 0{,}5\\pi = \\pi/2$ rad. Está en lo alto de la rueda (90°). Pero la <strong>posición angular</strong> sigue siendo $6{,}5\\pi$ rad: lleva la cuenta de que ha dado más de tres vueltas.</p>
+      </div>
+
       <h4>Posición angular vs. desplazamiento angular</h4>
       <ul class="clean">
         <li>🅰️ <strong>Posición angular $\\varphi$</strong>: dónde <em>está</em> el móvil ahora (es una coordenada, como $x$ en el MRU).</li>

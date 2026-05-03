@@ -17,8 +17,49 @@ export async function renderFisicaUd9(root) {
       </p>
     </section>
 
+    <section class="panel toc">
+      <h2>Índice</h2>
+      <ol class="toc-list">
+        <li><a href="#1-combinacion-lineal">1. Combinación lineal</a></li>
+        <li><a href="#2-vector-en-funcion-del-angulo">2. Vector en función del ángulo</a></li>
+        <li><a href="#3-por-que-va-con-coseno-y-con-seno">3. ¿Por qué $r_x$ va con coseno y $r_y$ con seno?</a></li>
+        <li><a href="#descomponedor-interactivo">🧪 Descomponedor interactivo</a></li>
+        <li><a href="#actividad-1-componentes-modulo-y-angulo">📝 Actividad 1 — Componentes → módulo y ángulo</a></li>
+        <li><a href="#actividad-2-modulo-y-angulo-componentes">📝 Actividad 2 — Módulo y ángulo → componentes</a></li>
+        <li><a href="#actividad-3-barca-cruzando-un-rio">📝 Actividad 3 — Barca cruzando un río</a></li>
+        <li><a href="#actividad-4-barca-con-angulo-respecto-a-la-orilla">📝 Actividad 4 — Barca con ángulo respecto a la orilla</a></li>
+        <li><a href="#actividad-5-nadador-y-velocidad-del-rio">📝 Actividad 5 — Nadador y velocidad del río</a></li>
+        <li><a href="#4-principio-de-galileo">4. Principio de Galileo</a></li>
+        <li><a href="#5-composicion-de-2-mru">5. Composición de 2 MRU</a></li>
+        <li><a href="#6-composicion-de-un-mru-y-un-mrua">6. Composición de un MRU y un MRUA</a></li>
+        <li><a href="#7-tiro-horizontal">7. Tiro horizontal</a></li>
+        <li><a href="#actividad-6-manguera-lanzando-agua">📝 Actividad 6 — Manguera lanzando agua</a></li>
+        <li><a href="#actividad-7-flecha-desde-un-acantilado">📝 Actividad 7 — Flecha desde un acantilado</a></li>
+        <li><a href="#actividad-8-mono-lanzando-un-platano">📝 Actividad 8 — Mono lanzando un plátano</a></li>
+        <li><a href="#8-tiro-oblicuo">8. Tiro oblicuo</a></li>
+        <li><a href="#actividad-9-manguera-con-inclinacion">📝 Actividad 9 — Manguera con inclinación</a></li>
+        <li><a href="#actividad-10-saque-de-portero">📝 Actividad 10 — Saque de portero</a></li>
+        <li><a href="#actividad-11-nina-lanzando-un-avion-de-papel">📝 Actividad 11 — Niña lanzando un avión de papel</a></li>
+        <li><a href="#9-movimiento-circular-magnitudes-angulares">9. Movimiento circular: magnitudes angulares</a></li>
+        <li><a href="#actividad-12-disco-rotando">📝 Actividad 12 — Disco rotando</a></li>
+        <li><a href="#actividad-13-velocista-vs-indycar">📝 Actividad 13 — Velocista vs Indycar</a></li>
+        <li><a href="#actividad-14-ventilador-acelerando">📝 Actividad 14 — Ventilador acelerando</a></li>
+        <li><a href="#10-movimiento-circular-uniforme-mcu">10. Movimiento Circular Uniforme (MCU)</a></li>
+        <li><a href="#actividad-15-cd-rom-girando">📝 Actividad 15 — CD-ROM girando</a></li>
+        <li><a href="#actividad-16-estacion-espacial-internacional">📝 Actividad 16 — Estación Espacial Internacional</a></li>
+        <li><a href="#11-movimiento-circular-uniformemente-acelerado-mcua">11. Movimiento Circular Uniformemente Acelerado (MCUA)</a></li>
+        <li><a href="#actividad-19-centrifugadora-arrancando">📝 Actividad 19 — Centrifugadora arrancando</a></li>
+        <li><a href="#actividad-20-rueda-frenando">📝 Actividad 20 — Rueda frenando</a></li>
+        <li><a href="#12-movimiento-armonico-simple-mas">12. Movimiento Armónico Simple (MAS)</a></li>
+        <li><a href="#actividad-17-mas-dado-por-su-ecuacion">📝 Actividad 17 — MAS dado por su ecuación</a></li>
+        <li><a href="#actividad-18-construir-la-ecuacion-del-mas">📝 Actividad 18 — Construir la ecuación del MAS</a></li>
+        <li><a href="#examenes-corregidos">🧾 Exámenes corregidos</a></li>
+        <li><a href="#chuleta-de-la-unidad">📋 Chuleta de la unidad</a></li>
+      </ol>
+    </section>
+
     <section class="panel">
-      <h2>1. Combinación lineal</h2>
+      <h2 id="1-combinacion-lineal">1. Combinación lineal</h2>
       <p>La <strong>posición</strong>, la <strong>velocidad</strong> y la <strong>aceleración</strong> son magnitudes vectoriales. En 2D, cualquier vector se expresa como suma de dos vectores unitarios:</p>
       <p style="text-align:center; font-size: 1.2em">$$\\vec{r} = x\\,\\vec{i} + y\\,\\vec{j}$$</p>
       <p>donde $\\vec{i} = (1, 0)$ es el unitario del eje X y $\\vec{j} = (0, 1)$ el del eje Y. Esa expresión se llama <strong>combinación lineal</strong>: sumar múltiplos escalares de los vectores de la base.</p>
@@ -57,7 +98,7 @@ export async function renderFisicaUd9(root) {
     </section>
 
     <section class="panel">
-      <h2>2. Vector en función del ángulo</h2>
+      <h2 id="2-vector-en-funcion-del-angulo">2. Vector en función del ángulo</h2>
       <p>Un mismo vector se puede describir de dos maneras equivalentes:</p>
       <ul class="clean">
         <li>📐 <strong>En cartesianas</strong>: $\\vec{r} = x\\,\\vec{i} + y\\,\\vec{j}$ (componentes).</li>
@@ -109,7 +150,7 @@ export async function renderFisicaUd9(root) {
     </section>
 
     <section class="panel">
-      <h2>3. ¿Por qué $r_x$ va con coseno y $r_y$ con seno?</h2>
+      <h2 id="3-por-que-va-con-coseno-y-con-seno">3. ¿Por qué $r_x$ va con coseno y $r_y$ con seno?</h2>
       <div class="theory">
         <h4>En una frase</h4>
         <p><strong>El coseno es el cateto que toca el ángulo. El seno es el cateto de enfrente.</strong></p>
@@ -127,7 +168,7 @@ export async function renderFisicaUd9(root) {
     </section>
 
     <section class="panel">
-      <h2>🧪 Descomponedor interactivo</h2>
+      <h2 id="descomponedor-interactivo">🧪 Descomponedor interactivo</h2>
       <p class="hint">Mueve los <em>sliders</em>: ves el vector $\\vec{r}$ (azul), sus componentes $r_x$ (naranja) y $r_y$ (verde), su módulo y el ángulo $\\alpha$.</p>
       <div class="row" style="gap: 18px; flex-wrap: wrap; align-items: flex-start">
         <div style="flex: 1; min-width: 260px">
@@ -164,7 +205,7 @@ export async function renderFisicaUd9(root) {
     </section>
 
     <section class="panel">
-      <h2>📝 Actividad 1 — Componentes → módulo y ángulo</h2>
+      <h2 id="actividad-1-componentes-modulo-y-angulo">📝 Actividad 1 — Componentes → módulo y ángulo</h2>
       <p>Un vector tiene coordenadas $\\vec{r} = 8\\,\\vec{i} - 6\\,\\vec{j}$. Halla:</p>
       <ol>
         <li>Su <strong>módulo</strong>.</li>
@@ -190,7 +231,7 @@ export async function renderFisicaUd9(root) {
     </section>
 
     <section class="panel">
-      <h2>📝 Actividad 2 — Módulo y ángulo → componentes</h2>
+      <h2 id="actividad-2-modulo-y-angulo-componentes">📝 Actividad 2 — Módulo y ángulo → componentes</h2>
       <p>Un vector de módulo $10$ forma un ángulo de $60°$ con la horizontal. Escríbelo en función de sus vectores unitarios $\\vec{i}$ y $\\vec{j}$.</p>
 
       <details>
@@ -217,7 +258,7 @@ export async function renderFisicaUd9(root) {
     </section>
 
     <section class="panel">
-      <h2>📝 Actividad 3 — Barca cruzando un río</h2>
+      <h2 id="actividad-3-barca-cruzando-un-rio">📝 Actividad 3 — Barca cruzando un río</h2>
       <p>Una barca a motor sale de un muelle y cruza un río a $v_b = 15$ m/s. La corriente del río es de $v_c = 2$ m/s. El río tiene un ancho de $300$ m. Calcula el <strong>punto de llegada de la barca respecto del muelle</strong>.</p>
 
       <details>
@@ -252,7 +293,7 @@ export async function renderFisicaUd9(root) {
     </section>
 
     <section class="panel">
-      <h2>📝 Actividad 4 — Barca con ángulo respecto a la orilla</h2>
+      <h2 id="actividad-4-barca-con-angulo-respecto-a-la-orilla">📝 Actividad 4 — Barca con ángulo respecto a la orilla</h2>
       <p>Una barca cruza un río con velocidad $v_b = 5$ m/s formando un <strong>ángulo de $135°$ con la orilla</strong>. La corriente del río tiene una velocidad $v_c = 3$ m/s y el río tiene $100$ m de ancho. Calcula el punto de llegada.</p>
 
       <details>
@@ -284,7 +325,7 @@ export async function renderFisicaUd9(root) {
     </section>
 
     <section class="panel">
-      <h2>📝 Actividad 5 — Nadador y velocidad del río</h2>
+      <h2 id="actividad-5-nadador-y-velocidad-del-rio">📝 Actividad 5 — Nadador y velocidad del río</h2>
       <p>Un río tiene una anchura de $100$ m. Un nadador quiere cruzarlo <strong>perpendicularmente</strong> a la corriente, pero acaba pasando $20$ m aguas abajo. Si la velocidad del nadador es de $2$ m/s, ¿qué velocidad lleva el río?</p>
 
       <details>
@@ -314,7 +355,7 @@ export async function renderFisicaUd9(root) {
     </section>
 
     <section class="panel">
-      <h2>4. Principio de Galileo</h2>
+      <h2 id="4-principio-de-galileo">4. Principio de Galileo</h2>
       <div class="theory">
         <h4>Enunciado</h4>
         <p>"Cuando un cuerpo sigue un <strong>movimiento compuesto</strong> por dos movimientos simples y simultáneos, su posición en un tiempo dado es <strong>independiente</strong> de cómo actúen los movimientos simples."</p>
@@ -358,7 +399,7 @@ export async function renderFisicaUd9(root) {
     </section>
 
     <section class="panel">
-      <h2>5. Composición de 2 MRU</h2>
+      <h2 id="5-composicion-de-2-mru">5. Composición de 2 MRU</h2>
       <p>Si en un eje hay un MRU $\\vec{r}_1 = x_1\\,\\vec{i} + y_1\\,\\vec{j}$ y en otro otro MRU $\\vec{r}_2 = x_2\\,\\vec{i} + y_2\\,\\vec{j}$:</p>
       <p style="text-align:center; font-size: 1.15em">$$\\vec{r} = (x_1 + x_2)\\,\\vec{i} + (y_1 + y_2)\\,\\vec{j}$$</p>
       <p>Tanto el vector posición como el vector velocidad del movimiento resultante son la <strong>suma vectorial</strong> de los dos movimientos.</p>
@@ -393,7 +434,7 @@ export async function renderFisicaUd9(root) {
     </section>
 
     <section class="panel">
-      <h2>6. Composición de un MRU y un MRUA</h2>
+      <h2 id="6-composicion-de-un-mru-y-un-mrua">6. Composición de un MRU y un MRUA</h2>
       <p>Si en lugar de combinar dos MRU combinamos un <strong>MRU</strong> (eje horizontal, velocidad constante) con un <strong>MRUA</strong> (eje vertical, aceleración $g$), aparecen los <strong>tiros</strong>. Distinguimos dos casos según haya o no velocidad inicial vertical:</p>
       <ul class="clean">
         <li>🎯 <strong>Tiro horizontal</strong>: la velocidad inicial es <em>solo</em> horizontal. La velocidad vertical empieza en 0 y va creciendo (negativa) por gravedad.</li>
@@ -422,7 +463,7 @@ export async function renderFisicaUd9(root) {
     </section>
 
     <section class="panel">
-      <h2>7. Tiro horizontal</h2>
+      <h2 id="7-tiro-horizontal">7. Tiro horizontal</h2>
       <p>Un <strong>tiro horizontal</strong> es la composición de dos movimientos:</p>
       <ul class="clean">
         <li>📐 Un <strong>MRU en el eje X</strong> (velocidad constante $v$).</li>
@@ -465,7 +506,7 @@ export async function renderFisicaUd9(root) {
     </section>
 
     <section class="panel">
-      <h2>📝 Actividad 6 — Manguera lanzando agua</h2>
+      <h2 id="actividad-6-manguera-lanzando-agua">📝 Actividad 6 — Manguera lanzando agua</h2>
       <p>Una manguera lanza agua horizontalmente a $10$ m/s desde una ventana situada a $15$ m de altura. ¿A qué distancia de la pared de la casa llegará el chorro al suelo?</p>
 
       <details>
@@ -484,7 +525,7 @@ export async function renderFisicaUd9(root) {
     </section>
 
     <section class="panel">
-      <h2>📝 Actividad 7 — Flecha desde un acantilado</h2>
+      <h2 id="actividad-7-flecha-desde-un-acantilado">📝 Actividad 7 — Flecha desde un acantilado</h2>
       <p>Se lanza una flecha desde un acantilado a una velocidad inicial de $108$ km/h. Su tiempo de vuelo es de $5$ s. Calcula la altura del acantilado.</p>
 
       <details>
@@ -502,7 +543,7 @@ export async function renderFisicaUd9(root) {
     </section>
 
     <section class="panel">
-      <h2>📝 Actividad 8 — Mono lanzando un plátano</h2>
+      <h2 id="actividad-8-mono-lanzando-un-platano">📝 Actividad 8 — Mono lanzando un plátano</h2>
       <p>Un mono lanza un plátano horizontalmente a un explorador desde un árbol de $7$ m de altura. ¿Qué velocidad inicial tiene que darle para que caiga sobre el explorador, que está a $10$ m horizontalmente del árbol?</p>
 
       <details>
@@ -520,7 +561,7 @@ export async function renderFisicaUd9(root) {
     </section>
 
     <section class="panel">
-      <h2>8. Tiro oblicuo</h2>
+      <h2 id="8-tiro-oblicuo">8. Tiro oblicuo</h2>
       <p>Un <strong>tiro oblicuo</strong> es la composición de:</p>
       <ul class="clean">
         <li>📐 Un <strong>MRU en el eje X</strong> (velocidad constante).</li>
@@ -567,7 +608,7 @@ export async function renderFisicaUd9(root) {
     </section>
 
     <section class="panel">
-      <h2>📝 Actividad 9 — Manguera con inclinación</h2>
+      <h2 id="actividad-9-manguera-con-inclinacion">📝 Actividad 9 — Manguera con inclinación</h2>
       <p>Desde una ventana a $10$ m del suelo, apuntamos con una manguera que expulsa agua a $12$ m/s con una inclinación de $30°$. Calcula la altura máxima y el alcance del agua.</p>
 
       <details>
@@ -592,7 +633,7 @@ export async function renderFisicaUd9(root) {
     </section>
 
     <section class="panel">
-      <h2>📝 Actividad 10 — Saque de portero</h2>
+      <h2 id="actividad-10-saque-de-portero">📝 Actividad 10 — Saque de portero</h2>
       <p>Un portero de fútbol efectúa un saque de puerta. La pelota cae en el césped $60$ m más adelante y $4$ s después de haber salido. Halla la velocidad inicial, la altura máxima y la velocidad con que llega al suelo.</p>
 
       <details>
@@ -620,7 +661,7 @@ export async function renderFisicaUd9(root) {
     </section>
 
     <section class="panel">
-      <h2>📝 Actividad 11 — Niña lanzando un avión de papel</h2>
+      <h2 id="actividad-11-nina-lanzando-un-avion-de-papel">📝 Actividad 11 — Niña lanzando un avión de papel</h2>
       <p>Una niña de $1{,}5$ m de altura prueba a lanzar un avión de papel a una velocidad de $5$ m/s. ¿Dónde está la papelera donde quiere encestar si acierta con un ángulo de $55°$?</p>
 
       <details>
@@ -642,7 +683,7 @@ export async function renderFisicaUd9(root) {
     </section>
 
     <section class="panel">
-      <h2>9. Movimiento circular: magnitudes angulares</h2>
+      <h2 id="9-movimiento-circular-magnitudes-angulares">9. Movimiento circular: magnitudes angulares</h2>
       <p>Cuando el movimiento sigue una <strong>curva cerrada</strong>, el sistema de referencias cambia: situamos el origen en el centro de la circunferencia, de modo que <em>el módulo del vector posición es constante e igual al radio $R$</em>. Para describir el movimiento usamos <strong>magnitudes angulares</strong>.</p>
 
       <h3>Posición angular ($\\varphi$)</h3>
@@ -686,7 +727,7 @@ export async function renderFisicaUd9(root) {
     </section>
 
     <section class="panel">
-      <h2>📝 Actividad 12 — Disco rotando</h2>
+      <h2 id="actividad-12-disco-rotando">📝 Actividad 12 — Disco rotando</h2>
       <p>Un disco de $12$ cm de radio da $3$ vueltas y media en $15$ segundos. Calcula:</p>
       <ol>
         <li>Su <strong>posición angular</strong> después de esos 15 s.</li>
@@ -711,7 +752,7 @@ export async function renderFisicaUd9(root) {
     </section>
 
     <section class="panel">
-      <h2>📝 Actividad 13 — Velocista vs Indycar</h2>
+      <h2 id="actividad-13-velocista-vs-indycar">📝 Actividad 13 — Velocista vs Indycar</h2>
       <p>¿Quién tiene más velocidad angular: una velocista que va a $45$ km/h en un óvalo de $50$ m de radio, o un monoplaza de la Indycar a $378$ km/h en un óvalo de $640$ m de radio?</p>
 
       <details>
@@ -732,7 +773,7 @@ export async function renderFisicaUd9(root) {
     </section>
 
     <section class="panel">
-      <h2>📝 Actividad 14 — Ventilador acelerando</h2>
+      <h2 id="actividad-14-ventilador-acelerando">📝 Actividad 14 — Ventilador acelerando</h2>
       <p>Un ventilador pasa de $1$ rpm a $15$ rpm en tan solo $10$ s. Calcula su aceleración angular media.</p>
 
       <details>
@@ -749,7 +790,7 @@ export async function renderFisicaUd9(root) {
     </section>
 
     <section class="panel">
-      <h2>10. Movimiento Circular Uniforme (MCU)</h2>
+      <h2 id="10-movimiento-circular-uniforme-mcu">10. Movimiento Circular Uniforme (MCU)</h2>
       <p>El MCU es un movimiento en el que el móvil describe una circunferencia con <strong>celeridad constante</strong> (módulo de la velocidad).</p>
       <p>El vector velocidad cambia de <em>dirección</em> en todo momento aunque su módulo sea constante. Por tanto sí hay aceleración:</p>
       <ul class="clean">
@@ -780,7 +821,7 @@ export async function renderFisicaUd9(root) {
     </section>
 
     <section class="panel">
-      <h2>📝 Actividad 15 — CD-ROM girando</h2>
+      <h2 id="actividad-15-cd-rom-girando">📝 Actividad 15 — CD-ROM girando</h2>
       <p>Un CD-ROM de radio $6$ cm gira a $2500$ rpm. Calcula:</p>
       <ol>
         <li>El módulo de la <strong>velocidad angular</strong> en rad/s.</li>
@@ -805,7 +846,7 @@ export async function renderFisicaUd9(root) {
     </section>
 
     <section class="panel">
-      <h2>📝 Actividad 16 — Estación Espacial Internacional</h2>
+      <h2 id="actividad-16-estacion-espacial-internacional">📝 Actividad 16 — Estación Espacial Internacional</h2>
       <p>La ISS gira con velocidad angular constante alrededor de la Tierra cada $90$ minutos en una órbita a $300$ km de altura sobre la superficie terrestre. a) Calcula sus velocidades angular y lineal. b) Justifica si tiene aceleración.</p>
 
       <details>
@@ -827,7 +868,7 @@ export async function renderFisicaUd9(root) {
     </section>
 
     <section class="panel">
-      <h2>11. Movimiento Circular Uniformemente Acelerado (MCUA)</h2>
+      <h2 id="11-movimiento-circular-uniformemente-acelerado-mcua">11. Movimiento Circular Uniformemente Acelerado (MCUA)</h2>
       <p>Es el movimiento circular en el que la <strong>velocidad angular varía a un ritmo constante</strong>: aceleración angular $\\alpha$ constante.</p>
 
       <h3>Ecuaciones (analogía con el MRUA)</h3>
@@ -856,7 +897,7 @@ export async function renderFisicaUd9(root) {
     </section>
 
     <section class="panel">
-      <h2>📝 Actividad 19 — Centrifugadora arrancando</h2>
+      <h2 id="actividad-19-centrifugadora-arrancando">📝 Actividad 19 — Centrifugadora arrancando</h2>
       <p>Una centrifugadora arranca y tarda $15$ s en alcanzar $720$ rpm. Calcula:</p>
       <ol>
         <li>La <strong>aceleración angular</strong>.</li>
@@ -885,7 +926,7 @@ export async function renderFisicaUd9(root) {
     </section>
 
     <section class="panel">
-      <h2>📝 Actividad 20 — Rueda frenando</h2>
+      <h2 id="actividad-20-rueda-frenando">📝 Actividad 20 — Rueda frenando</h2>
       <p>La velocidad angular de una rueda disminuye desde $900$ hasta $800$ rpm en $5$ segundos. Calcula la aceleración angular, el número de revoluciones efectuadas en ese tiempo, y cuánto tiempo más hará falta para que la rueda se detenga, suponiendo que se mantiene constante la aceleración de frenado.</p>
 
       <details>
@@ -910,7 +951,7 @@ export async function renderFisicaUd9(root) {
     </section>
 
     <section class="panel">
-      <h2>12. Movimiento Armónico Simple (MAS)</h2>
+      <h2 id="12-movimiento-armonico-simple-mas">12. Movimiento Armónico Simple (MAS)</h2>
       <p>Una partícula tiene MAS cuando vibra bajo la acción de <strong>fuerzas restauradoras proporcionales a la distancia respecto a la posición de equilibrio</strong>. El cuerpo se llama <em>oscilador armónico</em>.</p>
 
       <h3>Magnitudes características</h3>
@@ -955,7 +996,7 @@ export async function renderFisicaUd9(root) {
     </section>
 
     <section class="panel">
-      <h2>📝 Actividad 17 — MAS dado por su ecuación</h2>
+      <h2 id="actividad-17-mas-dado-por-su-ecuacion">📝 Actividad 17 — MAS dado por su ecuación</h2>
       <p>Una partícula oscila con un MAS de modo que su desplazamiento varía según $x = 5\\cos(2t + \\pi/6)$, con $x$ en cm y $t$ en s.</p>
       <ol>
         <li>En $t = 0$, encuentra el desplazamiento, la velocidad y la aceleración.</li>
@@ -983,7 +1024,7 @@ export async function renderFisicaUd9(root) {
     </section>
 
     <section class="panel">
-      <h2>📝 Actividad 18 — Construir la ecuación del MAS</h2>
+      <h2 id="actividad-18-construir-la-ecuacion-del-mas">📝 Actividad 18 — Construir la ecuación del MAS</h2>
       <p>Escribe la ecuación de un MAS cuya frecuencia es $15$ Hz y su velocidad inicial es $150\\pi$ cm/s, sabiendo que parte desde el reposo (posición de equilibrio).</p>
 
       <details>
@@ -1007,7 +1048,7 @@ export async function renderFisicaUd9(root) {
     </section>
 
     <section class="panel">
-      <h2>🧾 Exámenes corregidos</h2>
+      <h2 id="examenes-corregidos">🧾 Exámenes corregidos</h2>
       <p>Examen real del Tema 9 (1.º Bachillerato, curso 2025–2026, IES Jálama, 1 h). Cuatro apartados con dos ejercicios cada uno, eliges uno por apartado. Aquí los resolvemos todos para comparar.</p>
       <p class="hint">📌 <strong>Convenio</strong> de origen de coordenadas: el suelo (o el plano de aterrizaje) en $(0, 0)$, eje $y$ hacia arriba. Tomamos $g = 9{,}8$ m/s² salvo indicación expresa.</p>
 
@@ -1179,7 +1220,7 @@ export async function renderFisicaUd9(root) {
     </section>
 
     <section class="panel">
-      <h2>📋 Chuleta de la unidad</h2>
+      <h2 id="chuleta-de-la-unidad">📋 Chuleta de la unidad</h2>
       <div class="theory">
         <h4>🧠 Lo imprescindible</h4>
         <ul class="clean">

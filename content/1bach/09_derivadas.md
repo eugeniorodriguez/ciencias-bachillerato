@@ -1,5 +1,37 @@
 # TEMA 9. DERIVADAS
 
+---
+
+## Índice
+
+- [9.1. Derivada de una función en un punto](#91-derivada-de-una-función-en-un-punto)
+  - [9.1.1. Motivación: tasa de variación media](#911-motivación-tasa-de-variación-media)
+  - [9.1.2. Definición de derivada](#912-definición-de-derivada)
+  - [9.1.3. Derivadas laterales](#913-derivadas-laterales)
+  - [9.1.4. Derivabilidad ⇒ Continuidad](#914-derivabilidad--continuidad)
+- [9.2. Función derivada](#92-función-derivada)
+  - [9.2.1. Notaciones](#921-notaciones)
+- [9.3. Tabla de derivadas elementales](#93-tabla-de-derivadas-elementales)
+- [9.4. Reglas de derivación](#94-reglas-de-derivación)
+  - [9.4.1. Ejemplos clave](#941-ejemplos-clave)
+- [9.5. Recta tangente y normal](#95-recta-tangente-y-normal)
+  - [9.5.1. Ejemplo](#951-ejemplo)
+- [9.6. Aplicaciones al estudio de funciones](#96-aplicaciones-al-estudio-de-funciones)
+  - [9.6.1. Crecimiento y decrecimiento](#961-crecimiento-y-decrecimiento)
+  - [9.6.2. Extremos relativos](#962-extremos-relativos)
+  - [9.6.3. Concavidad y puntos de inflexión](#963-concavidad-y-puntos-de-inflexión)
+  - [9.6.4. Representación gráfica completa](#964-representación-gráfica-completa)
+  - [9.6.5. Problemas de optimización](#965-problemas-de-optimización)
+  - [9.6.6. Regla de L'Hôpital (introducción)](#966-regla-de-lhôpital-introducción)
+- [9.7. Teoremas fundamentales de derivabilidad](#97-teoremas-fundamentales-de-derivabilidad)
+  - [9.7.1. Teorema de Rolle](#971-teorema-de-rolle)
+  - [9.7.2. Teorema del valor medio (de Lagrange)](#972-teorema-del-valor-medio-de-lagrange)
+  - [9.7.3. Teorema de Cauchy](#973-teorema-de-cauchy)
+- [9.8. Ejemplos resueltos](#98-ejemplos-resueltos)
+- [9.9. Ejercicios propuestos](#99-ejercicios-propuestos)
+
+---
+
 ## 9.1. Derivada de una función en un punto
 
 ### 9.1.1. Motivación: tasa de variación media

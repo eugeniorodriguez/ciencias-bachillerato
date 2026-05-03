@@ -688,9 +688,49 @@ export async function renderFisicaUd9(root) {
       <p>Cuando el movimiento sigue una <strong>curva cerrada</strong>, el sistema de referencias cambia: situamos el origen en el centro de la circunferencia, de modo que <em>el módulo del vector posición es constante e igual al radio $R$</em>. Para describir el movimiento usamos <strong>magnitudes angulares</strong>.</p>
 
       <h3>Posición angular ($\\varphi$)</h3>
-      <p>Es el ángulo que forman dos vectores de posición cuando el móvil se desplaza una cierta cantidad de arco $s$:</p>
-      <p style="text-align:center; font-size: 1.15em">$$\\varphi = \\dfrac{s}{R}$$</p>
-      <p>Su unidad es el <strong>radián (rad)</strong>: es adimensional. Un radián es el ángulo que abarca un arco de longitud igual al radio.</p>
+      <p>Cuando un móvil viaja por una circunferencia, su posición ya no la damos con coordenadas $(x, y)$, sino con un único número: el <strong>ángulo $\\varphi$</strong> que forma su vector de posición con un eje de referencia (normalmente el eje $X$ positivo, igual que en trigonometría).</p>
+
+      <div class="theory">
+        <h4>📐 Definición</h4>
+        <p>La <strong>posición angular</strong> $\\varphi$ es <em>una coordenada</em> (no un desplazamiento): le asigna a cada punto de la circunferencia un ángulo, medido desde una referencia fija.</p>
+        <p style="text-align:center; font-size: 1.2em">$$\\varphi = \\dfrac{s}{R}$$</p>
+        <p>donde $s$ es la longitud del arco que va desde la referencia hasta el móvil (siguiendo la circunferencia) y $R$ es el radio.</p>
+      </div>
+
+      <h4>¿Por qué $\\varphi = s/R$ y no $s$ a secas?</h4>
+      <p>Porque $s$ depende de lo grande que sea la circunferencia. En una rueda pequeña $s$ es corto y en una grande es largo, aunque ambas hayan girado <em>lo mismo</em>. Al dividir entre $R$, eliminamos el tamaño y nos queda <strong>cuánto ha girado</strong>: una magnitud que solo describe el ángulo, sin importar el radio.</p>
+
+      <h4>Unidad: el radián (rad)</h4>
+      <p>Como $\\varphi = s/R$ es un cociente de dos longitudes (m / m), la posición angular es <strong>adimensional</strong>. Para subrayar que estamos hablando de un ángulo, le ponemos la "etiqueta" <strong>rad</strong>.</p>
+      <p>👉 <strong>Definición práctica</strong>: un radián es el ángulo cuyo arco mide exactamente lo mismo que el radio ($s = R \\Rightarrow \\varphi = 1$ rad).</p>
+
+      <h4>Convenios de signo y de origen</h4>
+      <ul class="clean">
+        <li>📍 <strong>Origen ($\\varphi = 0$)</strong>: por convenio, el eje $X$ positivo. Aunque puede elegirse cualquier dirección si lo dice el enunciado.</li>
+        <li>↺ <strong>Sentido positivo</strong>: el <em>antihorario</em> (igual que en trigonometría). Si el móvil gira en sentido horario, $\\varphi$ disminuye (o se le pone signo negativo).</li>
+        <li>🔄 <strong>Múltiples vueltas</strong>: $\\varphi$ no se "reinicia" al pasar por $2\\pi$. Tras dos vueltas completas, $\\varphi = 4\\pi$ rad. Esto permite distinguir "ha pasado por aquí una vez" de "ha pasado por aquí tres veces".</li>
+      </ul>
+
+      <h4>Posición angular vs. desplazamiento angular</h4>
+      <ul class="clean">
+        <li>🅰️ <strong>Posición angular $\\varphi$</strong>: dónde <em>está</em> el móvil ahora (es una coordenada, como $x$ en el MRU).</li>
+        <li>🅱️ <strong>Desplazamiento angular $\\Delta\\varphi = \\varphi - \\varphi_0$</strong>: cuánto <em>ha girado</em> entre dos instantes (es una variación, como $\\Delta x$).</li>
+      </ul>
+      <p>El desplazamiento angular es el análogo del desplazamiento lineal: con él se construyen velocidad y aceleración angulares, igual que con $\\Delta x$ se construyen $v$ y $a$.</p>
+
+      <div class="theory">
+        <h4>🧭 Tabla de equivalencias lineal ↔ angular</h4>
+        <table class="table">
+          <thead><tr><th>Lineal (recta)</th><th>Angular (circunferencia)</th><th>Conexión</th></tr></thead>
+          <tbody>
+            <tr><td>Posición $x$ (m)</td><td>Posición angular $\\varphi$ (rad)</td><td>$x \\leftrightarrow s = R\\varphi$</td></tr>
+            <tr><td>Desplazamiento $\\Delta x$</td><td>Desplazamiento angular $\\Delta\\varphi$</td><td>$\\Delta s = R\\,\\Delta\\varphi$</td></tr>
+            <tr><td>Velocidad $v$ (m/s)</td><td>Velocidad angular $\\omega$ (rad/s)</td><td>$v = \\omega R$</td></tr>
+            <tr><td>Aceleración $a$ (m/s²)</td><td>Aceleración angular $\\alpha$ (rad/s²)</td><td>$a_t = \\alpha R$</td></tr>
+          </tbody>
+        </table>
+        <p class="hint">La columna de la derecha solo es válida si los ángulos están en <strong>radianes</strong>. En grados habría que añadir factores $\\pi/180$.</p>
+      </div>
 
       <h3>Velocidad angular ($\\omega$)</h3>
       <p>Es el cociente entre el desplazamiento angular y el tiempo en recorrerlo:</p>
